@@ -155,7 +155,7 @@ pi.wheel( '.minNeedle', {
                             document.getElementsByClassName('keyword')[1].classList.add('active');
                             autoTyping( document.getElementsByClassName('keyword')[1], 'makes people smile,')
 
-                        }, 800)햣 ㄴ
+                        }, 800)
                     }, 800);
                 }
             }
