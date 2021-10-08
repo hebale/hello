@@ -92,7 +92,6 @@ pi.zipper('.zipBox', {
                                 setTimeout(function(){
                                     document.getElementsByClassName('clockBox')[0].classList.add('noTransition')
 
-
                                     // autoType function
                                     document.getElementsByClassName('keyword')[0].classList.add('active');
                                     autoTyping( document.getElementsByClassName('keyword')[0], 'who keeps time well,')
@@ -150,6 +149,12 @@ pi.wheel( '.minNeedle', {
                             o.container.style.display = 'none';
                             document.getElementsByClassName('countBox')[0].classList.add('active');
                             document.getElementsByClassName('countBox')[0].classList.add('start');
+
+                            // autoType function
+                            document.getElementsByClassName('keyword')[0].classList.remove('active');
+                            document.getElementsByClassName('keyword')[1].classList.add('active');
+                            autoTyping( document.getElementsByClassName('keyword')[1], 'makes people smile,')
+
                         }, 800)
                     }, 1200);
                 }
@@ -206,6 +211,12 @@ pi.counting('.countBox', {
 
                         document.getElementsByClassName('mouseBox')[0].classList.add('active');
                         document.getElementsByClassName('mouseBox')[0].classList.add('start');
+
+                        // autoType function
+                        document.getElementsByClassName('keyword')[1].classList.remove('active');
+                        document.getElementsByClassName('keyword')[2].classList.add('active');
+                        autoTyping( document.getElementsByClassName('keyword')[2], 'is meticulous at work,')
+
                     }, 650)
                 }, 1200);
             }
@@ -276,6 +287,13 @@ pi.pointer('.moveBox', {
                                     o.container.style.display ='none';
                                     document.getElementsByClassName('scrollBox')[0].classList.add('active');
                                     document.getElementsByClassName('scrollBox')[0].classList.add('start');
+
+
+                                    // autoType function
+                                    document.getElementsByClassName('keyword')[2].classList.remove('active');
+                                    document.getElementsByClassName('keyword')[3].classList.add('active');
+                                    autoTyping( document.getElementsByClassName('keyword')[3], 'and has potential.')
+
                                 },600)
                             },1200)
                         },500);
@@ -354,6 +372,10 @@ pi.scroll('.words', {
                     setTimeout(function(){
                         // o.container.style.display ='none';
                         document.getElementsByTagName('main')[0].classList.add('finish');
+
+                        // autoType function
+                        document.getElementsByClassName('keyword')[3].classList.remove('active');
+
                     },1000)
                 }, 1200);
             }
@@ -371,7 +393,7 @@ function autoTyping(target, str){
         if(typeIdx > strVal.length) return false;
         target.innerHTML = strVal.substr(0, typeIdx);
         typeIdx++
-        setTimeout(typeLoop, 150)
+        setTimeout(typeLoop, 100)
     }
 }
 

@@ -54,19 +54,19 @@ main { position: fixed; top: 50%; left: 50%; width: 100%; max-width: 1280px; hei
 main article { z-index: 10000; position: absolute; left: 0; top: 0; padding: 100px 0 60px; width: 32%; height: 100%; box-sizing: border-box; background: #fff; }
 main article h3 { padding: 0 34px; font-size: 3rem; font-weight: bold; }
 main article div.mainCopy { padding: 40px 34px; font-size: 1.2rem; word-break: break-all; }
-main article div.mainCopy span { position: relative; _width: 100%; padding: 2px 0; font-size: 1.4rem; vertical-align: baseline; }
-main article div.mainCopy span.ketword { display: inline-block; }
-main article div.mainCopy span:after { content: ''; content: ''; display: inline-block; position: absolute; top: 0; right: 0; width: 2px; height: 0; background: #000; }
+main article div.mainCopy span { position: relative; width: 100%; padding: 3px 0; font-size: 1.6rem; vertical-align: baseline; }
+main article div.mainCopy span.keyword { display: inline-block; }
+/*main article div.mainCopy span:after { content: ''; content: ''; display: inline-block; position: absolute; top: 0; right: 0; width: 2px; height: 0; background: #000; }*/
 main article div.copyRight { position: absolute; left: 0; bottom: 0; width: 100%; padding: 16px 30px 30px; font-size: 0; }
 main article div.copyRight span { position: relative; display: inline-block; font-size: 1.2rem; }
 main article div.copyRight span + span { margin-left: 20px; }
 main article div.copyRight span + span:before { content: '/'; position: absolute; top: 0; left: -13px; display: inline-block; }
 
 /* copy - motion */
-main article div.mainCopy span { transition: font-size 0.6s cubic-bezier(1, 0, 0.8, 1) 0s, padding-right 0.6s cubic-bezier(1, 0, 0.8, 1) 0s; }
-main article div.mainCopy span:after { transition: height 0.6s cubic-bezier(1, 0, 0.8, 1) 0s; }
-main article div.mainCopy span.active { transition: none; height: 30px; line-height: 30px; padding-right: 6px; font-size: 2.2rem; }
-main article div.mainCopy span.active:after { transition: none; height: 30px; animation: typeCaret 1s linear 0s infinite; }
+main article div.mainCopy span { transition: font-size 0.6s ease-in-out 0s, padding-right 0.6s ease-in-out 0s; }
+main article div.mainCopy span:after { transition: height 0.6s ease-in-out 0s; }
+main article div.mainCopy span.active { transition: none; height: 30px; line-height: 30px; padding-right: 6px; font-size: 2.4rem; }
+/*main article div.mainCopy span.active:after { transition: none; height: 30px; animation: typeCaret 1s linear 0s infinite; }*/
 @keyframes typeCaret {
     0% { background: rgba(0, 0, 0, 0); }
     50% { background: rgba(0, 0, 0, 1);}
