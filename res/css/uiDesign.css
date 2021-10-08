@@ -1,0 +1,229 @@
+@charset "utf-8";
+/*========================================
+    import css
+========================================*/
+@import url('./uiLayout.css'); /* 레이아웃 css파일 */
+@import url('./uiComponent.css'); /* 컴포턴트 css파일 */
+@import url('./uiContents.css'); /* 콘텐츠 css파일 */
+@import url('./uiResponsive.css'); /* 반응형 css파일 */
+
+html,body { font-family: 'Aldrich', sans-serif; font-size: 10px; background: #f0f0f0; }
+html,body * { -webkit-touch-callout: none; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; }
+
+/* common - copy */
+.working { z-index: 99999; display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; padding: 20px 0; background: rgba(255, 255, 255, 0.3); box-sizing: border-box; }
+.working div { position: absolute; top: 50%; left: 50%; width: 100%; max-width: 280px; height: 100%; max-height: 200px; padding: 35px 0; line-height: 1.4; border-radius: 16px; transform: translate(-50%, -50%); font-size: 1.4rem; font-weight: bold; text-align: center; background: #fff; box-sizing: border-box; }
+.working div span { display: inline-block; width: 100%; margin-bottom: 14px; font-size: 3rem; }
+body.mobile .working { display: block; }
+
+/* ====================
+    [LAYOUT]
+==================== */
+main { position: fixed; top: 50%; left: 50%; width: 100%; max-width: 1280px; height: 800px; border-radius: 10px; transform: translate(-50%, -50%); box-shadow: 0 0 35px rgba(0, 0, 0, 0.12); _overflow: hidden; }
+
+
+/* ====================
+    [INTRO]
+==================== */
+/* zipBox */
+.zipBox { z-index: 10001; position: absolute; top: 0; left: 0; right: 0; bottom: 0; border-radius: 10px; box-sizing: border-box; transform-origin: 32% 50%; transform: scale(1.01); _overflow: hidden; }
+.zipBox.zip-wrap .zip-cover-left { position: absolute; bottom: 0; left: 0; width: 32%; height: 100%; border-left: 6px dashed #909090; border-radius: 0 10px 10px 0; background-color: #ddd; box-sizing: border-box; transform-origin: 50% 90%; transform: rotateY(-180deg)}
+.zipBox.zip-wrap .zip-cover-right { position: absolute; bottom: 0; right: 36%; width: 32%; height: 100%; border-left: 6px dashed #909090; border-radius: 0 10px 10px 0; background-color: #ddd; box-sizing: border-box; }
+.zipBox.zip-wrap .zip-cover-right:after{ content: ''; position: absolute; right: -112%; top: 0; width: 112%; height: 100%; border-radius: 0 10px 10px 0; background: #ddd; }
+.zipBox .zipHandle { z-index: 100; position: absolute; top: 10px; left: 50%; margin-left: -15px; width: 30px; height: 34px; cursor: grab; }
+.zipBox .zipHandle:before { content: ''; z-index: 10; position: absolute; top: 7px; left: 0; width: 100%; height: 100%; border-radius: 8px 8px 4px 4px; background: #707070; transform: perspective(10px) rotateX(-10deg); }
+.zipBox .zipHandle:after { content: ''; position: absolute; top: 0; left: 50%; width: 120px; height: 120px; margin-left: -60px; }
+.zipBox .zipHandle .zipTag { z-index: 10; position: absolute; height: 38px; line-height: 40px; padding: 0 14px 0 14px; top: 23px; left: 15px; transform-origin: 0 50%; border-radius: 2px 8px 8px 2px; font-size: 1.5rem; font-weight: bold; letter-spacing: 1px; color: #fff; background: tomato; transform: rotate(90deg) perspective(10px) rotateY(-1deg); }
+.zipBox .zipHandle .zipTag:before { content: ''; display: inline-block; position: absolute; left: -30px; top: 50%; margin-top: -7px; width: 20px; height: 14px; border-radius: 2px; background: #909090; transform: translateZ(10px); }
+.zipBox .zipHandle .zipTag { -webkit-touch-callout: none; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; }
+.zipBox .zipHandle .zipTag .chain { display: inline-block; position: absolute; top: 0px; left: -18px; height: 38px; width: 24px; border: 6px solid tomato; border-radius: 12px 0 0 12px; box-sizing: border-box; }
+
+/* zipBox - active effect */
+.zipBox.active { }
+
+/* zipBox - complete */
+.zipBox.end:after { z-index: 100; content: ''; position: absolute; top: 0; left: 0; display: inline-block; width: 100%; height: 100%; }
+.zipBox.end .zip-cover-left { transition: transform 450ms cubic-bezier(1, 0, 0.8, 1) 300ms, opacity 550ms cubic-bezier(1, 0, 0.8, 1) 350ms; transform-origin: 50% 90%; transform: rotateY(-180deg) translate(5px, 0); opacity: 0; }
+.zipBox.end .zip-cover-right { transition: transform 450ms cubic-bezier(1, 0, 0.8, 1) 300ms, opacity 550ms cubic-bezier(1, 0, 0.8, 1) 350ms; transform-origin: 50% 90%; transform: translate(5px, 0); opacity: 0; }
+.zipBox.end .zipHandle { transition: opacity 100ms linear 350ms; !important; opacity: 0; }
+
+
+/* ====================
+    [COPY]
+==================== */
+main article { z-index: 10000; position: absolute; left: 0; top: 0; padding: 100px 0 60px; width: 32%; height: 100%; box-sizing: border-box; background: #fff; }
+main article h3 { padding: 0 34px; font-size: 3rem; font-weight: bold; }
+main article div.mainCopy { padding: 40px 34px; font-size: 1.2rem; word-break: break-all; }
+main article div.mainCopy span { position: relative; _width: 100%; padding: 2px 0; font-size: 1.4rem; vertical-align: baseline; }
+main article div.mainCopy span.ketword { display: inline-block; }
+main article div.mainCopy span:after { content: ''; content: ''; display: inline-block; position: absolute; top: 0; right: 0; width: 2px; height: 0; background: #000; }
+main article div.copyRight { position: absolute; left: 0; bottom: 0; width: 100%; padding: 16px 30px 30px; font-size: 0; }
+main article div.copyRight span { position: relative; display: inline-block; font-size: 1.2rem; }
+main article div.copyRight span + span { margin-left: 20px; }
+main article div.copyRight span + span:before { content: '/'; position: absolute; top: 0; left: -13px; display: inline-block; }
+
+/* copy - motion */
+main article div.mainCopy span { transition: font-size 0.6s cubic-bezier(1, 0, 0.8, 1) 0s, padding-right 0.6s cubic-bezier(1, 0, 0.8, 1) 0s; }
+main article div.mainCopy span:after { transition: height 0.6s cubic-bezier(1, 0, 0.8, 1) 0s; }
+main article div.mainCopy span.active { transition: none; height: 30px; line-height: 30px; padding-right: 6px; font-size: 2.2rem; }
+main article div.mainCopy span.active:after { transition: none; height: 30px; animation: typeCaret 1s linear 0s infinite; }
+@keyframes typeCaret {
+    0% { background: rgba(0, 0, 0, 0); }
+    50% { background: rgba(0, 0, 0, 1);}
+    100% { background: rgba(0, 0, 0, 0);}
+}
+
+/* copy - active effect */
+main article { transition: width 0.85s cubic-bezier(1, 0, 0.8, 1) 0.5s; }
+
+/* copy - motion */
+main.finish article { width: 100%; }
+
+
+
+
+
+
+
+
+
+/* ====================
+    [CLOCK]
+==================== */
+/* clockBox */
+.clockBox { z-index: 900; position: absolute; top: 0; left: 32%; right: 0; bottom: 0; background: #f0f0f0; overflow: hidden; }
+.clockBox .clockNumber { position: absolute; top: 0; left: 0; right: 0; bottom: 0; opacity: 0; }
+.clockBox .clockNumber span { position: absolute; display: inline-block; font-size: 2.6rem; color: #acacac; }
+.clockBox .clockNumber span { -webkit-touch-callout: none; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; }
+.clockBox .clockNumber span.num12 { top: 30px; left: 50%; transform: translate(-50%, 0); }
+.clockBox .clockNumber span.num9 { top: 50%; left: 30px; transform: translate(0 ,-50%); }
+.clockBox .clockNumber span.num6 { bottom: 30px; right: 50%; transform: translate(50%, 0); }
+.clockBox .clockNumber span.num3 { bottom: 50%; right: 30px; transform: translate(0 , 50%); }
+
+/* clockBox needle  */
+.clockBox .hourNeedle { position: absolute; top: 50%; left: 50%; width: 32px; height: 32px; margin-top: -16px; margin-left: -16px; border-radius: 50%; transform-origin: 50% 50%; background: #707070; transform: scale(0); }
+.clockBox .hourNeedle span { display: inline-block; position: absolute; margin-top: 10px; left: 50%; margin-left: -10px; width: 20px; height: 0px; border-radius: 8px 8px 0 0; transform: translate(0, -100%); background: #707070; }
+.clockBox .minNeedle { position: absolute; top: 50%; left: 50%; width: 22px; height: 22px; margin-top: -12px; margin-left: -12px; border-radius: 50%; transform-origin: 50% 50%; background: tomato; transform: scale(0); cursor: grab; }
+.clockBox .minNeedle span { display: inline-block; position: absolute; margin-top: 10px; left: 50%; margin-left: -6px; width: 12px; height: 0px; border-radius: 6px 6px 0 0; transform: translate(0, -100%); background: inherit; }
+.clockBox .secNeedle { position: absolute; top: 50%; left: 50%; width: 12px; height: 12px; margin-top: -6px; margin-left: -6px; border-radius: 50%; transform-origin: 50% 50%; background: #909090; transform: scale(0); }
+.clockBox .secNeedle span { dispaly: inline-block; position: absolute; margin-top: 10px; left: 50%; margin-left: -3px; width: 6px; height: 0px; border-radius: 3px 3px 0 0; transform: translate(0, -100%); background: #909090; }
+
+/* clockBox - active effect */
+.clockBox.active { }
+.clockBox .hourNeedle { transition: transform 0.45s cubic-bezier(1, 0, 0.8, 1) 0s, opacity 0.45s cubic-bezier(1, 0, 0.8, 1) 0s; }
+.clockBox .minNeedle { transition: transform 0.45s cubic-bezier(1, 0, 0.8, 1) 0.2s, opacity 0.45s cubic-bezier(1, 0, 0.8, 1) 0s;; }
+.clockBox .secNeedle { transition: transform 0.45s cubic-bezier(1, 0, 0.8, 1) 0.4s, opacity 0.45s cubic-bezier(1, 0, 0.8, 1) 0s;; }
+.clockBox .hourNeedle span { transition: height 0.35s cubic-bezier(1, 0, 0.8, 1) 0.5s; }
+.clockBox .minNeedle span { transition: height 0.35s cubic-bezier(1, 0, 0.8, 1) 0.6s; }
+.clockBox .secNeedle span { transition: height 0.35s cubic-bezier(1, 0, 0.8, 1) 0.7s; }
+.clockBox .clockNumber { transition: opacity 0.6s ease-in-out 1s; }
+
+/* clockBox - motion */
+.clockBox.start .hourNeedle,
+.clockBox.start .minNeedle,
+.clockBox.start .secNeedle { transform: scale(1); }
+.clockBox.start .hourNeedle span { height: 130px; }
+.clockBox.start .minNeedle span { height: 210px; }
+.clockBox.start .secNeedle span { height: 230px; }
+.clockBox.start .clockNumber { opacity: 1; }
+.clockBox.start.noTransition > div { transition: none; }
+.clockBox.start.noTransition > div > span { transition: none; }
+.clockBox.end:after { z-index: 100; content: ''; position: absolute; top: 0; left: 0; display: inline-block; width: 100%; height: 100%; }
+.clockBox.end .hourNeedle,
+.clockBox.end .minNeedle,
+.clockBox.end .secNeedle { opacity: 0; }
+.clockBox .clockNumber span { transition: opacity 0.5s linear 1.5s; }
+
+
+/* ====================
+    [EMOJI]
+==================== */
+/* countBox - [COUNTING] */
+.countBox { z-index: 800; position: absolute; top: 0; left: 32%; right: 0; bottom: 0; background: #f0f0f0; overflow: hidden; }
+.countBox .countBtn { z-index: 100; position: absolute; top: 50%; left: 50%; width: 210px; height: 210px; border: none; border-radius: 50%; transform: translate(-50%, -50%); background: transparent; }
+.countBox .emoji { z-index: 10; position: absolute; top: 50%; left: 50%; width: 100px; height: 100px; transition: transform 0.25s ease-in-out 0s; transform: translate(-50%, -50%); }
+.countBox .emoji svg { z-index: 9; position: absolute; top: 50%; left: 50%; width: 100%; height: 100%; transform-origin: 50% 50%; transform: translate(-50%, -50%) scale(0.05); }
+.countBox .emoji .emojiBg { z-index: 8; position: absolute; top: 50%; left: 50%; width: 180px; height: 180px; border: 12px solid #fff; border-radius: 50%; background: #f0f0f0; transform-origin: 50% 50%; transform: translate(-50%, -50%) scale(0.05); }
+.countBox [class^='countBg'] { _display: none; position: absolute; top: 50%; left: 50%; width: 100%; height: 100%; border-radius: 50%; transform-origin: 50% 50%; }
+
+/* clockBox - active effect */
+.countBox.active { }
+.countBox .emoji svg,
+.countBox .emoji .emojiBg { transition: transform 0.55s ease-in-out 0s; }
+.countBox.start .emoji svg,
+.countBox.start .emoji .emojiBg { transition-timing-function: cubic-bezier(1, 0, 0.6, 1.5); transform: translate(-50%, -50%) scale(1); }
+.countBox .emoji.clicked { transform: translate(-50%, -50%) scale(1.05);  }
+
+/* clockBox - end */
+.countBox.end:after { z-index: 100; content: ''; position: absolute; top: 0; left: 0; display: inline-block; width: 100%; height: 100%; }
+
+
+/* ====================
+    [BUG]
+==================== */
+/* bug - [POINTER] */
+.mouseBox { z-index: 700; position: absolute; top: 0; left: 32%; right: 0; bottom: 0; background: #f0f0f0; overflow: hidden; cursor: none; }
+.mouseBox .bug { position: absolute; display: inline-block; top: 50%; left: 50%; font-size: 1rem; font-weight: bold; color: tomato; transform-origin: 50% 50%; transform: scale(0.4); }
+.mouseBox .magnifying { position: absolute; top: 50%; left: 50%; width: 140px; height: 140px; transform: translate(-50%, -50%); opacity: 0; }
+.mouseBox .magnifying .glass { position: absolute; top: 0; left: 0; width: 140px; height: 140px; border: 12px solid #707070; border-radius: 50%; box-shadow: -15px 15px 15px -5px rgba(0, 0, 0, 0.15); background: #f0f0f0; box-sizing: border-box; overflow: hidden; }
+.mouseBox .magnifying .glass:after { content: ''; display: inline-block; position: absolute; top: 25px; left: 12px; width: 24px; height: 40px; border-radius: 50%; transform: rotate(55deg) skew(30deg); background: #fff; opacity: 0.15; box-shadow: 0 0 12px 5px rgba(255, 255, 255, 0.6); }
+.mouseBox .magnifying .glass .copyBug { position: absolute; top: -100%; left: -100%; font-size: 1rem; font-weight: bold; color: tomato; letter-spacing: -1px; transform-origin: 50% 50%; transform: translate(-50%, -50%) scale(1); white-space: nowrap; }
+.mouseBox .magnifying .glass .copyBug { -webkit-touch-callout: none; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; }
+.mouseBox .magnifying .glassHandle { position: absolute; top: 115px; right: 15px; height: 70px; width: 20px; border-radius: 6px; transform-origin: 50% 0; transform: rotate(-45deg); transform: perspective(50px) rotateX(10deg) rotateY(-10deg) rotateZ(-45deg); box-shadow: -15px -10px 15px -5px rgba(0, 0, 0, 0.15); background: #707070; }
+
+/* bug - active effect */
+.mouseBox.active {}
+.mouseBox .magnifying { transition: transform 0.6s cubic-bezier(1, 0, 0.6, 1.5) 0s, opacity 0.45s ease-in-out 0.2s; }
+.mouseBox .magnifying .glass .copyBug:after { content: ''; display: inline-block; position: absolute; top: 50%; left: 113%; margin-top: -4px; width: 0%; height: 1px; background: #acacac; transition: width 0.3s cubic-bezier(1, 0, 0.6, 1.5) 0s; transform-origin: 0% 50%; transform: rotate(170deg); }
+
+/* bub - motion */
+.mouseBox.start .magnifying { transform: translate(-50%, -50%); opacity: 1; }
+.mouseBox.end:after { z-index: 100; content: ''; position: absolute; top: 0; left: 0; display: inline-block; width: 100%; height: 100%; }
+.mouseBox.end .bug { display: none; }
+.mouseBox.end .magnifying .glass .copyBug { transition: color 0.3s cubic-bezier(1, 0, 0.6, 1.5) 0s; color: #acacac !important; }
+.mouseBox.end .magnifying .glass .copyBug:after { width: 120%; }
+
+/* debug - pc(temp test) */
+/*body.mobile .mouseBox .magnifyingGlass { opacity: 0; }*/
+/*body.mobile .mouseBox .magnifyingGlass.activeSwat { opacity: 1; }*/
+
+
+/* ====================
+    [SCROLL]
+==================== */
+/* scrollBox - [SCROLL] */
+.scrollBox { z-index: 600; position: absolute; top: 0; left: 32%; right: 0; bottom: 0; background: #f0f0f0; overflow: hidden; }
+.scrollBox .words { display: inline-block; position: absolute; top: 50%; left: 50%; width: 100%; height: 40px; transform: translate(-50%, -50%); text-align: center; overflow: hidden; }
+.scrollBox .words:before { content: ''; display: inline-block; position: absolute; top: 0; left: 0; width: 100%; height: 10px; background-image: linear-gradient(to bottom, #f0f0f0, rgba(240, 240, 240, 0)); }
+.scrollBox .words:after { content: ''; display: inline-block; position: absolute; bottom: 0; left: 0; width: 100%; height: 10px; background-image: linear-gradient(to top, #f0f0f0, rgba(240, 240, 240, 0)); }
+.scrollBox .words ul { display: inline-block; height: 100%; transform: translate(0, 40px); box-sizing: border-box; overflow: hidden; }
+.scrollBox .words ul > li.alphabet { z-index: -1; position: relative; display: inline-block; line-height: 40px; width: 22px; font-size: 2.6rem; font-weight: bold; vertical-align: top; }
+.scrollBox .words ul > li.alphabet > span { display: inline-block; width: 100%; }
+
+/* scrollBox - active effect */
+.scrollBox.active { }
+.scrollBox .words ul > li.alphabet { transition: padding 0.6s ease-in-out 0s; }
+
+/* scrollBox - motion */
+.scrollBox.start .words ul { transition: transform 0.55s cubic-bezier(1, 0, 0.6, 1.5) 0.5s; transform: translate(0, 0); }
+.scrollBox.end .words ul > li.alphabet { padding-left: 5px; padding-right: 5px; }
+
+
+
+
+
+
+
+/*========================================
+    plugin css
+========================================*/
+.zip-wrap {}
+/*.zip-wrap .zip-cover-left { position: absolute; bottom: 0; left: 0; width: 50%; height: 100%; border-right: 5px dashed #909090; background: rgba(0, 0, 0, 0.15); box-sizing: border-box; }*/
+/*.zip-wrap .zip-cover-right { position: absolute; bottom: 0; right: 0; width: 50%; height: 100%; border-left: 5px dashed #909090; background: rgba(0, 0, 0, 0.15); box-sizing: border-box;}*/
+/*.zip-wrap .zip-cover-top { position: absolute; top: 0; left: 0; width: 100%; height: 50%; border-bottom: 5px dashed #909090; background: rgba(0, 0, 0, 0.15); box-sizing: border-box;}*/
+/*.zip-wrap .zip-cover-bottom { position: absolute; bottom: 0; right: 0; width: 100%; height: 50%; border-top: 5px dashed #909090; background: rgba(0, 0, 0, 0.15); box-sizing: border-box;}*/
+
+
+
+.scroll-wrap {}
+.scroll-wrap .control-area { position: absolute; top: 0; left: 0; right: 0; bottom: 0; }
