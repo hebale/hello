@@ -6,40 +6,31 @@ view.init(); // common view javascript
 var ArrColorCode = ['#ff0d0d', '#ff4e11', '#ff8e15', '#acb334', '#69b34c'];
 
 /* [SHORTCUT] */
-var shortCut = document.getElementsByClassName('shortCut')[0];
-for(var i = shortCut.children.length; i--;){
-
-
-    shortCut.children[i].children[0].addEventListener('click', function(){
-
-        var sections = document.getElementsByTagName('section');
-        for( var i = sections.length; i--; ){
-
-
-
-            if(this === sections[i]) console.log(this);
-        }
-
-        if(this.classList.value.indexOf('ui-zipper') !== -1){
-            this.style.display = 'block'
-        }
-
-        if(this.classList.value.indexOf('ui-clock') !== -1){
-            this.style.display = 'block'
-        };
-        if(this.classList.value.indexOf('ui-emoji') !== -1){
-            this.style.display = 'block'
-        };
-        if(this.classList.value.indexOf('ui-bug') !== -1){
-            this.style.display = 'block'
-        };
-        if(this.classList.value.indexOf('ui-scroll') !== -1){
-            this.style.display = 'block'
-        };
-    })
-}
-
-console.log( document.getElementsByTagName('section') );
+// var shortCut = document.getElementsByClassName('shortCut')[0];
+// for(var i = shortCut.children.length; i--;){
+//     shortCut.children[i].children[0].addEventListener('click', function(){
+//
+//         var sections = document.getElementsByTagName('section');
+//         for( var i = sections.length; i--; ){
+//             if(this === sections[i]) console.log(this);
+//         }
+//         if(this.classList.value.indexOf('ui-zipper') !== -1){
+//             this.style.display = 'block'
+//         }
+//         if(this.classList.value.indexOf('ui-clock') !== -1){
+//             this.style.display = 'block'
+//         };
+//         if(this.classList.value.indexOf('ui-emoji') !== -1){
+//             this.style.display = 'block'
+//         };
+//         if(this.classList.value.indexOf('ui-bug') !== -1){
+//             this.style.display = 'block'
+//         };
+//         if(this.classList.value.indexOf('ui-scroll') !== -1){
+//             this.style.display = 'block'
+//         };
+//     })
+// }
 
 
 /* ==============================
@@ -368,15 +359,30 @@ pi.scroll('.words', {
 
                 setTimeout(function(){
                     o.container.classList.add('end');
+                    // autoType function
+                    document.getElementsByClassName('keyword')[3].classList.remove('active');
 
                     setTimeout(function(){
                         // o.container.style.display ='none';
                         document.getElementsByTagName('main')[0].classList.add('finish');
 
-                        // autoType function
-                        document.getElementsByClassName('keyword')[3].classList.remove('active');
 
-                    },1000)
+                        //
+                        var nowC = 0;
+                        setInterval(function(){
+                            if(nowC >= ArrColorCode.length - 1) {
+                                nowC = 0;
+                            }
+                            colorAni('.finishWord',{
+                                target: document.getElementsByClassName('finishWord')[0],
+                                property: 'color',
+                                beforeBg : ArrColorCode[nowC],
+                                afterBg : ArrColorCode[nowC + 1],
+                            });
+
+                            nowC++;
+                        }, 600);
+                    },1000);
                 }, 1200);
             }
         }

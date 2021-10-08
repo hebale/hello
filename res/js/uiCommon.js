@@ -170,7 +170,7 @@
 
             /* REMOVE EVENT */
             ['mouseup', 'mouseleave', 'touchend', 'touchcancel'].forEach(function(event){
-                o.handler.addEventListener(event, function(e){
+                o.container.addEventListener(event, function(e){
                     o.container.removeEventListener('touchmove', zipFunc);
                     o.container.removeEventListener('mousemove', zipFunc);
                     o.position = {
