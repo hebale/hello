@@ -73,6 +73,7 @@ pi.zipper('.zipBox', {
 
                         setTimeout(function(){
                             document.getElementsByClassName('clockBox')[0].classList.add('active');
+                            autoTyping( document.getElementsByClassName('intro')[0], "I'm a publisher")
 
                             // wheel effect
                             setTimeout(function(){
@@ -209,7 +210,7 @@ pi.counting('.countBox', {
                         autoTyping( document.getElementsByClassName('keyword')[2], 'is meticulous at work,')
 
                     }, 650)
-                }, 1200);
+                }, 1000);
             }
         },
     }
@@ -366,18 +367,20 @@ pi.scroll('.words', {
                         // o.container.style.display ='none';
                         document.getElementsByTagName('main')[0].classList.add('finish');
 
-
-                        //
-                        var nowC = 0;
+                        // finishWord
+                        var nowC = 0, newC;
                         setInterval(function(){
-                            if(nowC >= ArrColorCode.length - 1) {
-                                nowC = 0;
+                            if(nowC > ArrColorCode.length - 1) nowC = 0;
+                            if(nowC === ArrColorCode.length - 1){
+                                newC = 0;
+                            }else{
+                                newC = nowC + 1;
                             }
                             colorAni('.finishWord',{
                                 target: document.getElementsByClassName('finishWord')[0],
-                                property: 'color',
+                                property: 'backgroundColor',
                                 beforeBg : ArrColorCode[nowC],
-                                afterBg : ArrColorCode[nowC + 1],
+                                afterBg : ArrColorCode[newC],
                             });
 
                             nowC++;
@@ -399,7 +402,7 @@ function autoTyping(target, str){
         if(typeIdx > strVal.length) return false;
         target.innerHTML = strVal.substr(0, typeIdx);
         typeIdx++
-        setTimeout(typeLoop, 100)
+        setTimeout(typeLoop, 110);
     }
 }
 
