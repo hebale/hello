@@ -90,6 +90,7 @@ main article div.mainCopy span.confirm { height: 30px; line-height: 30px; paddin
 /* copy - active effect */
 main article { transition: width 0.45s linear 0.6s; }
 main article ul.shortCut > li { position: relative; }
+main article ul.shortCut > li.active button { text-decoration: underline; }
 main article ul.shortCut > li.active:after { content: ''; z-index: 10; position: absolute; top: 0; left: 0; right: 0; bottom: 0; }
 main article ul.shortCut > li:nth-child(1) { transition: all 0.55s ease 1.4s; }
 main article ul.shortCut > li:nth-child(2) { transition: all 0.55s ease 1.5s; }
