@@ -80,6 +80,14 @@
     };
 
 
+
+
+
+
+
+
+
+
     /* UI PLUGIN LIST */
     var _pi = {
 
@@ -101,6 +109,7 @@
                 pageY : null,
                 pageX : null,
                 moveValue : 0,
+                divide: 0.5,
                 progress : 0,
                 axis : 'y',
                 overflow : true,
@@ -120,10 +129,9 @@
             }
 
             /* OPTION INIT */
-            if(o.handler === null) return console.warn( 'Handler is nessesary' );
             o.container.classList.add(pluginName);
+            if(o.handler === null) return console.warn( 'Handler is nessesary' );
             if(typeof o.on.init === 'function') o.on.init( o );
-
             if(getComputedStyle(o.container).position === 'static') o.container.style.position = 'relative';
             if(o.coverFirst === null){
                 var coverFirstDom = document.createElement('div');
@@ -136,21 +144,6 @@
                 o.axis === 'y' ? coverSecondDom.classList.add('zip-cover-right') : coverSecondDom.classList.add('zip-cover-bottom');
                 o.coverSecond = coverSecondDom;
                 o.container.append(coverSecondDom);
-            }
-
-            resizeFunc();
-            window.addEventListener('resize', resizeFunc);
-            var handleCss = getComputedStyle(o.handler);
-
-            function resizeFunc(){
-                handleCss = getComputedStyle(o.handler);
-                o.handler.removeAttribute("style");
-                o.handler.style.top = o.container.offsetHeight * o.progress + 'px';
-                o.handler.style.left = o.container.offsetWidth * 0.32 + 'px';
-                o.position = {
-                    top : o.handler.offsetTop,
-                    left : o.handler.offsetLeft
-                };
             }
 
             /* ADD EVENT */
@@ -180,6 +173,9 @@
                 });
             });
 
+            /* RESIZE EVENT */
+            window.addEventListener('resize', updateFunc);
+
             /* EVENT FUNCTION */
             function zipFunc(e){
                 var _pageY = e.type === 'touchmove' ? e.touches[0].pageY : e.pageY,
@@ -201,23 +197,65 @@
                     x : o.container.offsetWidth - o.handler.offsetWidth
                 };
 
-                /* zipper value */
-                var type = Object.keys(o.position)[Object.keys(o.limit).indexOf(o.axis)],
+                updateFunc();
+                if(typeof o.on.drag === 'function') o.on.drag( o );
+            }
+
+            /* UPDATE FUNCTION */
+            function updateFunc(option){
+                var handleCss = getComputedStyle(o.handler),
+                    type = Object.keys(o.position)[Object.keys(o.limit).indexOf(o.axis)],
                     marginType = 'margin' + type.replace(type.substr(0, 1), type.substr(0,1).toUpperCase() );
 
                 if(o.overflow){
                     o.moveValue = Math.min(Math.max((o.position[type] - o.gap[o.axis] + (-1 * parseInt(handleCss[marginType]))), -1 * parseInt(handleCss[marginType])), (o.limit[o.axis] +  -1 * parseInt(handleCss[marginType])));
                 }else {
-                    o.moveValue = o.handler.style[type] = (o.position[type] - o.gap[o.axis]);
+                    o.moveValue = (o.position[type] - o.gap[o.axis]);
                 }
                 o.progress = o.moveValue / o.limit[o.axis]
+
+                /* OPTION MERGE */
+                if(option !== undefined) {
+                    for (var i in Object.keys(o)) {
+                        o[Object.keys(o)[i]] = option[Object.keys(o)[i]] === undefined ? o[Object.keys(o)[i]] : option[Object.keys(o)[i]];
+                    }
+                }
+
                 o.handler.style[type] = o.moveValue + 'px';
                 o.coverFirst.style['borderRadius'] = (o.progress * 100).toFixed(2) + '% 10px 10px 0 / ' + (o.progress * 100).toFixed(2) + '% 10px 10px 0';
                 o.coverSecond.style['borderRadius'] = (o.progress * 100).toFixed(2) + '% 10px 10px 0 / ' + (o.progress * 100).toFixed(2) + '% 10px 10px 0';
-
-                if(typeof o.on.drag === 'function') o.on.drag( o );
             }
+
+            /* METHOD VAR */
+            var method = {
+                update : function(option){
+                    o.gap = { y : 0, x : 0 };
+                    o.limit = { y : o.container.offsetHeight - o.handler.offsetHeight, x : o.container.offsetWidth - o.handler.offsetWidth };
+                    if(option !== undefined){
+                        if(option.progress !== undefined) o.position.top = o.container.offsetHeight * option.progress;
+                        if(option.progress !== undefined) o.position.left = o.container.offsetWidth * option.progress;
+                    };
+                    updateFunc(option);
+                },
+                destroy : function(){
+                    window.removeEventListener('resize', updateFunc);
+                },
+            }
+
+            return method;
         },
+
+
+
+
+
+
+
+
+
+
+
+
 
         /* WHEEL */
         wheel : function(target, option){
@@ -281,6 +319,7 @@
 
             /* EVENT FUNCTION */
             function wheelFunc(e){
+                if(o.container.classList.value.indexOf('active') === -1  ) return;
                 var _pageY = e.type === 'touchmove' ? e.touches[0].pageY : e.pageY,
                     _pageX = e.type === 'touchmove' ? e.touches[0].pageX : e.pageX;
 
@@ -326,6 +365,24 @@
                 /* METHOD */
                 if(typeof o.on.drag === 'function') o.on.drag( o );
             }
+
+
+
+            o.on.stop = function(){
+                o.container.removeEventListener('touchmove', wheelFunc);
+                o.container.removeEventListener('mousemove', wheelFunc);
+            }
+
+            /* METHOD VAR */
+            var method = {
+                update : function(option){
+
+                },
+                destroy : function(){
+                },
+            }
+
+            return method;
         },
 
         /* COUNTING - check */
@@ -339,6 +396,7 @@
                 target : null, // temp check target
                 container : document.getElementsByTagName('body')[0],
                 event : 'click', // default
+                repeat : false,
                 effect : {
                     type : null, // temp check deep copy
                     // option : ['red', 'blue', 'green', 'yellow', 'purple'],
@@ -400,8 +458,9 @@
                 o.start < o.end ? o.nowCount = o.nowCount + o.unit : o.nowCount = o.nowCount - o.unit;
 
                 /* METHOD */
-                if( o.effect.type === "background" ) bgEvent(o.nowCount);
+                if(o.effect.type === "background") bgEvent(o.nowCount);
                 if(typeof o.on.count === 'function') o.on.count( o );
+                if(o.repeat && o.nowCount === o.end) o.nowCount = o.start;
                 if(o.nowCount === o.end){
                     if(typeof o.on.end === 'function') o.on.end( o );
                     [o.event].forEach(function(event){
@@ -426,6 +485,20 @@
                     o.effect.items[count - 1].style.transform = 'translate(-50%, -50%) scale('+ loopWidth +', '+ loopHeight +')';
                 });
             }
+
+            /* METHOD VAR */
+            var method = {
+                update : function(option){
+                    o.nowCount = 0;
+                    o.repeat = true;
+                    [o.event].forEach(function(event){
+                        o.target.addEventListener(event, countFunc);
+                    });
+                },
+                destroy : function(){
+                },
+            }
+            return method;
         },
 
         /* POINTER */
@@ -470,17 +543,6 @@
                 o.container.addEventListener(event, up);
             });
 
-            /* EVENT METHOD */
-            o.on.stop = function(){
-                o.container.classList.remove(pluginName);
-                ['mousemove'].forEach(function(event){
-                    o.container.removeEventListener(event, moveFunc);
-                });
-            };
-            o.on.update = function(){
-
-            }
-
             /* EVENT FUNCTION */
             function moveFunc(e){
                 var scrTop = document.getElementsByTagName('html')[0].scrollTop;
@@ -499,6 +561,22 @@
             function up(e){
                 if(typeof o.on.up === 'function') o.on.up( o );
             }
+
+            /* METHOD VAR */
+            var method = {
+                update : function(option){
+                    ['mousemove'].forEach(function(event){
+                        o.container.addEventListener(event, moveFunc);
+                    });
+                },
+                destroy : function(){
+                    o.container.classList.remove(pluginName);
+                    ['mousemove'].forEach(function(event){
+                        o.container.removeEventListener(event, moveFunc);
+                    });
+                },
+            }
+            return method;
         },
 
         /* SCROLL */
@@ -539,20 +617,20 @@
             controlArea.classList.add('control-area');
             controlArea.style.zIndex = 10;
             controlScroll.style.height = (o.container.offsetHeight + 760) + 'px'; // temp value
-
-            if(o.axis === 'xy'){
-                controlArea.style.overflowX = 'auto';
-                controlArea.style.overflowY = 'auto';
-            }else if(o.axis === 'x'){
-                controlArea.style.overflowX = 'auto';
-                controlArea.style.overflowY = 'hidden';
-            }else if(o.axis === 'y'){
-                controlArea.style.overflowX = 'hidden';
-                controlArea.style.overflowY = 'auto';
-            };
             o.container.append(controlArea);
             o.controlArea = document.getElementsByClassName('control-area')[0]
             o.controlArea.append(controlScroll);
+
+            if(o.axis === 'xy'){
+                o.controlArea.style.overflowX = 'auto';
+                o.controlArea.style.overflowY = 'auto';
+            }else if(o.axis === 'x'){
+                o.controlArea.style.overflowX = 'auto';
+                o.controlArea.style.overflowY = 'hidden';
+            }else if(o.axis === 'y'){
+                o.controlArea.style.overflowX = 'hidden';
+                o.controlArea.style.overflowY = 'auto';
+            };
 
             /* TARGET SETTING */
             o.target.style.display = 'inline-block';
@@ -573,6 +651,25 @@
                 if(typeof o.on.scroll === 'function') o.on.scroll( o );
                 if(typeof o.on.end === 'function' && o.progress >= 1) o.on.end( o );
             }
+
+            /* METHOD VAR */
+            var method = {
+                update : function(option){
+                    if(o.axis === 'xy'){
+                        o.controlArea.style.overflowX = 'auto';
+                        o.controlArea.style.overflowY = 'auto';
+                    }else if(o.axis === 'x'){
+                        o.controlArea.style.overflowX = 'auto';
+                        o.controlArea.style.overflowY = 'hidden';
+                    }else if(o.axis === 'y'){
+                        o.controlArea.style.overflowX = 'hidden';
+                        o.controlArea.style.overflowY = 'auto';
+                    };
+                },
+                destroy : function(){
+                },
+            }
+            return method;
         }
     };
 

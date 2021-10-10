@@ -33,11 +33,199 @@ var ArrColorCode = ['#ff0d0d', '#ff4e11', '#ff8e15', '#acb334', '#69b34c'];
 // }
 
 
+
+
+var classList = {
+    section : ['zipBox', 'clockBox', 'countBox', 'mouseBox', 'scrollBox'],
+    button : ['ui-zipper', 'ui-clock', 'ui-emoji', 'ui-bug', 'ui-scroll']
+}
+document.getElementsByClassName('refresh')[0].addEventListener('click', function(){
+   location.reload();
+});
+document.getElementsByClassName('ui-zipper')[0].addEventListener('click', function(){
+
+    // temp common
+    for(var i = classList['section'].length; i--;){
+        if(this.classList.value.indexOf(classList['button'][i]) !== -1){
+            document.getElementsByClassName(classList.section[i])[0].style.display = 'block'
+            document.getElementsByClassName(classList.button[i])[0].parentElement.classList.add('active');
+        }else{
+            document.getElementsByClassName(classList.section[i])[0].style.display = 'none'
+            document.getElementsByClassName(classList.button[i])[0].parentElement.classList.remove('active');
+        }
+    }
+
+    document.getElementsByClassName('finishWord')[0].style.display = 'none';
+    document.getElementsByClassName('zipBox')[0].style.display = 'block';
+    document.getElementsByClassName('zipBox')[0].classList.add('active');
+    document.getElementsByClassName('zipBox')[0].classList.remove('end');
+    piZipper.update({progress : 0});
+    colorAni('.zipTag',{
+        target: document.getElementsByClassName('zipTag')[0],
+        property: 'backgroundColor',
+        beforeBg : stepColor(ArrColorCode, 0).startCode,
+        afterBg : stepColor(ArrColorCode, 0).endCode,
+        type : 'progress',
+        progress : stepColor(ArrColorCode, 0).nowProgress
+    });
+    colorAni('.chain',{
+        target: document.getElementsByClassName('chain')[0],
+        property : 'borderColor',
+        beforeBg : stepColor(ArrColorCode, 0).startCode,
+        afterBg : stepColor(ArrColorCode, 0).endCode,
+        type : 'progress',
+        progress : stepColor(ArrColorCode, 0).nowProgress
+    });
+
+    /* TEXT SET */
+    autoTyping( document.getElementsByClassName('title')[0], 'ZIPPER', 150)
+
+    document.getElementsByClassName('keyword')[0].classList.remove('confirm');
+    document.getElementsByClassName('keyword')[1].classList.remove('confirm');
+    document.getElementsByClassName('keyword')[2].classList.remove('confirm');
+    document.getElementsByClassName('keyword')[3].classList.remove('confirm');
+});
+
+document.getElementsByClassName('ui-clock')[0].addEventListener('click', function(){
+    // temp common
+    for(var i = classList['section'].length; i--;){
+        if(this.classList.value.indexOf(classList['button'][i]) !== -1){
+            document.getElementsByClassName(classList.section[i])[0].style.display = 'block'
+            document.getElementsByClassName(classList.button[i])[0].parentElement.classList.add('active');
+        }else{
+            document.getElementsByClassName(classList.section[i])[0].style.display = 'none'
+            document.getElementsByClassName(classList.button[i])[0].parentElement.classList.remove('active');
+        }
+    }
+
+    document.getElementsByClassName('clockBox')[0].classList.add('active');
+    document.getElementsByClassName('clockBox')[0].classList.add('start');
+    document.getElementsByClassName('clockBox')[0].classList.add('noTransition');
+    document.getElementsByClassName('clockBox')[0].classList.remove('end');
+
+    if(secoundInter === null){
+        setSecound();
+        secoundInter = setInterval(setSecound,1000);
+    }
+
+    /* TEXT SET */
+    autoTyping( document.getElementsByClassName('title')[0], 'CLOCK', 150);
+
+    document.getElementsByClassName('keyword')[0].classList.add('confirm');
+    document.getElementsByClassName('keyword')[1].classList.remove('confirm');
+    document.getElementsByClassName('keyword')[2].classList.remove('confirm');
+    document.getElementsByClassName('keyword')[3].classList.remove('confirm');
+});
+
+document.getElementsByClassName('ui-emoji')[0].addEventListener('click', function(){
+    // temp common
+    for(var i = classList['section'].length; i--;){
+        if(this.classList.value.indexOf(classList['button'][i]) !== -1){
+            document.getElementsByClassName(classList.section[i])[0].style.display = 'block'
+            document.getElementsByClassName(classList.button[i])[0].parentElement.classList.add('active');
+        }else{
+            document.getElementsByClassName(classList.section[i])[0].style.display = 'none'
+            document.getElementsByClassName(classList.button[i])[0].parentElement.classList.remove('active');
+        }
+    }
+
+    piCounting.update();
+    document.getElementsByClassName('countBox')[0].classList.add('active');
+    document.getElementsByClassName('countBox')[0].classList.add('start');
+    document.getElementsByClassName('countBox')[0].classList.remove('end');
+
+    /* TEXT SET */
+    autoTyping( document.getElementsByClassName('title')[0], 'EMOJI', 150);
+
+    document.getElementsByClassName('keyword')[0].classList.remove('confirm');
+    document.getElementsByClassName('keyword')[1].classList.add('confirm');
+    document.getElementsByClassName('keyword')[2].classList.remove('confirm');
+    document.getElementsByClassName('keyword')[3].classList.remove('confirm');
+});
+
+document.getElementsByClassName('ui-bug')[0].addEventListener('click', function(){
+    // temp common
+    for(var i = classList['section'].length; i--;){
+        if(this.classList.value.indexOf(classList['button'][i]) !== -1){
+            document.getElementsByClassName(classList.section[i])[0].style.display = 'block'
+            document.getElementsByClassName(classList.button[i])[0].parentElement.classList.add('active');
+        }else{
+            document.getElementsByClassName(classList.section[i])[0].style.display = 'none'
+            document.getElementsByClassName(classList.button[i])[0].parentElement.classList.remove('active');
+        }
+    }
+
+    randomPosition('.bug',{
+        target : document.getElementsByClassName('bug')[0],
+        container : document.getElementsByClassName('mouseBox')[0],
+        padding : 150,
+    })
+    piPointer.update();
+    document.getElementsByClassName('mouseBox')[0].classList.add('active');
+    document.getElementsByClassName('mouseBox')[0].classList.add('start');
+    document.getElementsByClassName('mouseBox')[0].classList.remove('end');
+    document.getElementsByClassName('copyBug')[0].style.top = '-100%';
+    document.getElementsByClassName('copyBug')[0].style.left = '-100%';
+
+    /* TEXT SET */
+    autoTyping( document.getElementsByClassName('title')[0], 'BUG', 150);
+
+    document.getElementsByClassName('keyword')[0].classList.remove('confirm');
+    document.getElementsByClassName('keyword')[1].classList.remove('confirm');
+    document.getElementsByClassName('keyword')[2].classList.add('confirm');
+    document.getElementsByClassName('keyword')[3].classList.remove('confirm');
+});
+
+document.getElementsByClassName('ui-scroll')[0].addEventListener('click', function(){
+    // temp common
+    for(var i = classList['section'].length; i--;){
+        if(this.classList.value.indexOf(classList['button'][i]) !== -1){
+            document.getElementsByClassName(classList.section[i])[0].style.display = 'block'
+            document.getElementsByClassName(classList.button[i])[0].parentElement.classList.add('active');
+        }else{
+            document.getElementsByClassName(classList.section[i])[0].style.display = 'none'
+            document.getElementsByClassName(classList.button[i])[0].parentElement.classList.remove('active');
+        }
+    }
+    for(var i = 0; i < document.getElementsByClassName('alphabet').length; i ++) {
+        document.getElementsByClassName('alphabet')[i].style.color = ArrColorCode[0];
+    }
+
+    piScroll.update();
+    document.getElementsByClassName('control-area')[0].scrollTo(0, 0);
+    document.getElementsByClassName('scrollBox')[0].classList.add('active');
+    document.getElementsByClassName('scrollBox')[0].classList.add('start');
+    document.getElementsByClassName('scrollBox')[0].classList.remove('end');
+
+    /* TEXT SET */
+    autoTyping( document.getElementsByClassName('title')[0], 'SCROLL', 150);
+
+    document.getElementsByClassName('keyword')[0].classList.remove('confirm');
+    document.getElementsByClassName('keyword')[1].classList.remove('confirm');
+    document.getElementsByClassName('keyword')[2].classList.remove('confirm');
+    document.getElementsByClassName('keyword')[3].classList.add('confirm');
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /* ==============================
     PLUGIN LIST
 ============================== */
 /* [INTRO] - zipper effect */
-pi.zipper('.zipBox', {
+var piZipper = new pi.zipper('.zipBox', {
     container : document.getElementsByClassName('zipBox')[0],
     handler : document.getElementsByClassName('zipHandle')[0],
     on : {
@@ -67,7 +255,7 @@ pi.zipper('.zipBox', {
             }else{
                 if( o.progress > 0.9){
                     // now section -> next section
-                    if( o.container.classList.value.indexOf('active') !== -1 ){
+                    if( o.container.classList.value.indexOf('active') !== -1 && document.getElementsByTagName('main')[0].classList.value.indexOf('finish') === -1 ){
                         o.container.classList.remove('active');
                         o.container.classList.add('end');
 
@@ -88,7 +276,7 @@ pi.zipper('.zipBox', {
                                     document.getElementsByClassName('keyword')[0].classList.add('active');
                                     autoTyping( document.getElementsByClassName('keyword')[0], 'who keeps time well,')
 
-                                },1600);
+                                },1450);
                             }, 300)
                         }, 1200);
                     }
@@ -98,8 +286,9 @@ pi.zipper('.zipBox', {
     }
 });
 
+
 /* [SECTION01] - wheel effect */
-pi.wheel( '.minNeedle', {
+var piWheel = new pi.wheel( '.minNeedle', {
     target : document.getElementsByClassName('minNeedle')[0],
     container: document.getElementsByClassName('clockBox')[0],
     on : {
@@ -108,7 +297,7 @@ pi.wheel( '.minNeedle', {
         },
         dragStart: function(o){
             o.startTime = new Date();
-            o.inTime = o.startTime.getHours() > 12 ? (o.startTime.getHours() - 12) * 360 + (o.startTime.getMinutes() * 6) : (o.startTime.getHours() * 360) + (o.startTime.getMinutes() * 6)
+            o.inTime = o.startTime.getHours() >= 12 ? (o.startTime.getHours() - 12) * 360 + (o.startTime.getMinutes() * 6) : (o.startTime.getHours() * 360) + (o.startTime.getMinutes() * 6)
         },
         drag : function(o){
             if(o.degree > 0){
@@ -128,11 +317,12 @@ pi.wheel( '.minNeedle', {
                 });
             }else{
                 // now section -> next section
-                if( o.container.classList.value.indexOf('active') !== -1 ) {
+                if( o.container.classList.value.indexOf('active') !== -1 && document.getElementsByTagName('main')[0].classList.value.indexOf('finish') === -1  ) {
                     o.container.classList.remove('active');
                     o.container.classList.remove('start');
                     o.container.classList.remove('noTransition');
                     clearInterval(secoundInter);
+                    secoundInter = null;
 
                     setTimeout(function () {
                         o.container.classList.add('end');
@@ -157,9 +347,8 @@ pi.wheel( '.minNeedle', {
     }
 });
 
-
 /* [SECTION02] - SVG animation */
-pi.counting('.countBox', {
+var piCounting = new pi.counting('.countBox', {
     target : document.getElementsByClassName('countBtn')[0],
     container : document.getElementsByClassName('countBox')[0],
     start: 0,
@@ -192,7 +381,7 @@ pi.counting('.countBox', {
         },
         end: function(o){
             // now section -> next section
-            if( o.container.classList.value.indexOf('active') !== -1 ) {
+            if( o.container.classList.value.indexOf('active') !== -1 && document.getElementsByTagName('main')[0].classList.value.indexOf('finish') === -1 ) {
                 o.container.classList.remove('active');
 
                 setTimeout(function () {
@@ -217,7 +406,7 @@ pi.counting('.countBox', {
 });
 
 /* [SECTION04] - click effect */
-pi.pointer('.moveBox', {
+var piPointer = new pi.pointer('.moveBox', {
     target : document.getElementsByClassName('magnifying')[0],
     container : document.getElementsByClassName('mouseBox')[0],
     on : {
@@ -231,6 +420,8 @@ pi.pointer('.moveBox', {
                 origin : document.getElementsByClassName('bug')[0],
                 copy : document.getElementsByClassName('copyBug')[0],
             }
+
+            o.setTime = null;
         },
         move : function(o){
             var bugInfo = {
@@ -254,6 +445,8 @@ pi.pointer('.moveBox', {
             o.bug.copy.style.left = bugLeft + 'px';
             o.bug.copy.style.transform = 'translate(-50%, -50%) scale(' + ((1 - progress) * 2.4 + 1).toFixed(2) +')';
 
+            o.nowProgress = progress;
+
             if(progress < 0.7){
                 colorAni('.copyBug',{
                     target: document.getElementsByClassName('copyBug')[0],
@@ -264,31 +457,40 @@ pi.pointer('.moveBox', {
                     progress : stepColor(ArrColorCode, (0.7 - progress) / 0.7).nowProgress
                 });
                 if(progress < 0.1){
+
                     // now section -> next section
-                    if( o.container.classList.value.indexOf('active') !== -1 ) {
-                        o.container.classList.remove('active');
+                    if(o.setTime === null){
+                        o.setTime = setTimeout(function(){
+                            if(o.nowProgress < 0.1){
+                                if( o.container.classList.value.indexOf('active') !== -1 && document.getElementsByTagName('main')[0].classList.value.indexOf('finish') === -1 ) {
+                                    o.container.classList.remove('active');
 
-                        setTimeout(function(){
-                            o.container.classList.add('end');
-                            o.on.stop();
+                                    setTimeout(function(){
+                                        o.container.classList.add('end');
+                                        piPointer.destroy();
 
-                            setTimeout(function(){
-                                o.container.classList.remove('start');
+                                        setTimeout(function(){
+                                            o.container.classList.remove('start');
 
-                                setTimeout(function(){
-                                    o.container.style.display ='none';
-                                    document.getElementsByClassName('scrollBox')[0].classList.add('active');
-                                    document.getElementsByClassName('scrollBox')[0].classList.add('start');
+                                            setTimeout(function(){
+                                                o.container.style.display ='none';
+                                                document.getElementsByClassName('scrollBox')[0].classList.add('active');
+                                                document.getElementsByClassName('scrollBox')[0].classList.add('start');
 
 
-                                    // autoType function
-                                    document.getElementsByClassName('keyword')[2].classList.remove('active');
-                                    document.getElementsByClassName('keyword')[3].classList.add('active');
-                                    autoTyping( document.getElementsByClassName('keyword')[3], 'and has potential.')
+                                                // autoType function
+                                                document.getElementsByClassName('keyword')[2].classList.remove('active');
+                                                document.getElementsByClassName('keyword')[3].classList.add('active');
+                                                autoTyping( document.getElementsByClassName('keyword')[3], 'and has potential.')
 
-                                },600)
-                            },1200)
-                        },500);
+                                            },600)
+                                        },1200)
+                                    },500);
+                                }500
+                            }else{
+                                o.setTime = null;
+                            }
+                        },350)
                     }
                 }
             }
@@ -297,7 +499,7 @@ pi.pointer('.moveBox', {
 });
 
 /* [SECTION05] - scroll effect */
-pi.scroll('.words', {
+var piScroll = new pi.scroll('.words', {
     target : document.getElementsByClassName('words')[0],
     container : document.getElementsByClassName('scrollBox')[0],
     on : {
@@ -354,7 +556,7 @@ pi.scroll('.words', {
         },
         end : function(o){
             // now section -> next section
-            if( o.container.classList.value.indexOf('active') !== -1 ){
+            if( o.container.classList.value.indexOf('active') !== -1 && document.getElementsByTagName('main')[0].classList.value.indexOf('finish') === -1 ){
                 o.container.classList.remove('active');
                 o.controlArea.style.overflow = "hidden";
 
@@ -386,23 +588,26 @@ pi.scroll('.words', {
                             nowC++;
                         }, 600);
                     },1000);
-                }, 1200);
+                }, 400);
             }
         }
     }
 });
 
 // autoTyping function
-function autoTyping(target, str){
+function autoTyping(target, str, speed){
     var strVal = str.trim(),
-        typeIdx = 0;
+        typeIdx = 0,
+        typeSpeed = 100;
+
+    if(speed !== undefined) typeSpeed = speed;
 
     typeLoop(); // loop start
     function typeLoop(){
         if(typeIdx > strVal.length) return false;
         target.innerHTML = strVal.substr(0, typeIdx);
         typeIdx++
-        setTimeout(typeLoop, 110);
+        setTimeout(typeLoop, typeSpeed);
     }
 }
 
@@ -437,9 +642,3 @@ function triFunc(t,l){
         powL = Math.pow(l, 2);
     return Math.sqrt( Math.abs(powT) + Math.abs(powL) );
 };
-
-
-
-
-
-
