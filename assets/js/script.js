@@ -1,11 +1,19 @@
 /* view init */
 View.init();
 
+const appHeightSet = () => {
+	const doc = document.documentElement;
+	const vh = window.innerHeight * 0.01;
+
+	doc.style.setProperty('--vh', `${vh}px`);
+	doc.style.setProperty('--app-height', `${window.innerHeight}px`)
+};
+
 /* color code */
-let processColorCode = ['#f91111', '#fd7f0f', '#ffc80d', '#b5ca28', '#58c131'];
+const processColorCode = ['#f91111', '#fd7f0f', '#ffc80d', '#b5ca28', '#58c131'];
 
 /* svg emoji animation */
-let svgEmojiMap = {
+const svgEmojiMap = {
 	happy: [
 		{M: [20, 270]},
 		{C: [30, 260, 50, 260, 80, 260]},
