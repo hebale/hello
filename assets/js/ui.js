@@ -609,7 +609,7 @@
 
 				if(o.effect.type === 'parallax'){}
 				if(typeof o.on.scroll === 'function') o.on.scroll(o);
-				if(typeof o.on.end === 'function' && o.progress >= 1) o.on.end(o);
+				if(typeof o.on.end === 'function' && o.progress > 0.999) o.on.end(o);
 			};
 
 			return method;
