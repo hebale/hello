@@ -1,0 +1,7 @@
+.ui-typing.ui-caret:after { content: ''; display: inline-block; margin-left: 4px; width: 1px; height: 1.5rem; background: #111; vertical-align: middle; transition: none; animation: typeCaret 0.6s linear 0s infinite;}
+
+@keyframes typeCaret {
+    0% { background: rgba(0, 0, 0, 0); }
+    50% { background: rgba(0, 0, 0, 1);}
+    100% { background: rgba(0, 0, 0, 0);}
+}

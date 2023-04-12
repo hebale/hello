@@ -1,65 +1,30 @@
-@charset "utf-8";
-
-/*========================================
-    인풋
-========================================*/
-/*----- 인풋 초기값 -----*/
+/* input */
 .input_pack { display: inline-block; }
 .input_pack label span { display: inline-block; font-size: 14px; vertical-align: middle; }
 .input_pack input { -webkit-appearance: none; appearance: none; box-sizing: border-box; border: none; outline: 0; border-radius: 0; box-shadow: none; background: none; }
 .input_pack input::-ms-clear, .input_pack input::-ms-reveal { display: none; }
 .input_pack input::-ms-check { visibility: hidden; }
-
-/*----- 인풋 디자인 | 입력 -----*/
 .input_pack input[type="text"],
 .input_pack input[type="password"],
 .input_pack input[type="search"],
 .input_pack input[type="tel"],
 .input_pack input[type="number"] { display: inline-block; border: 1px solid tomato; box-sizing: border-box; vertical-align: middle; }
-
-/*----- 인풋 디자인 | 체크박스 -----*/
 .input_pack input[type="checkbox"] ~ span { margin-left: 6px; }
-
-/*----- 인풋 디자인 | 라디오 -----*/
 .input_pack input[type="radio"] ~ span { margin-left: 6px; }
 
-
-/*========================================
-    텍스트에어리어
-========================================*/
-/*----- 텍스트에어리어 초기값 -----*/
+/* textarea */
 .textarea_pack { display: inline-block; }
 .textarea_pack textarea { -webkit-appearance: none; appearance: none; box-sizing: border-box; border: none; outline: 0; border-radius: 0; box-shadow: none; background: none; resize: none; }
 .textarea_pack textarea.type_resize { resize: auto; }
-
-/*----- 텍스트에어리어 디자인 -----*/
 .textarea_pack textarea { display: inline-block; border: 1px solid tomato; box-sizing: border-box; vertical-align: middle; }
 
-
-/*========================================
-    셀렉트
-========================================*/
-/*----- 셀렉트 초기값 -----*/
+/* select */
 .select_pack { display: inline-block; }
 .select_pack select { -webkit-appearance: none; appearance: none; box-sizing: border-box; border: none; outline: 0; border-radius: 0; box-shadow: none; background: none; }
 .select_pack select::-ms-expand { display: none; }
-
-/*----- 셀렉트 디자인 -----*/
 .select_pack select { display: inline-block; border: 1px solid tomato; box-sizing: border-box; vertical-align: middle; }
 
-
-/*========================================
-    버튼
-========================================*/
-/*----- 버튼 초기값 -----*/
+/* button */
 .btn_pack { display: inline-block; }
 .btn_pack button { padding: 0; border: none; box-sizing: border-box; text-decoration: none; text-align: center; cursor: pointer; }
-
-/*----- 버튼 디자인 -----*/
 .btn_pack button { display: inline-block; border: 1px solid tomato; box-sizing: border-box; }
-
-
-/*========================================
-    버튼
-========================================*/
-/*----- 버튼 초기값 -----*/

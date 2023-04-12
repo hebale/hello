@@ -1,0 +1,123 @@
+/* 
+ * zipper ui style
+ */
+.zipper-box { left: 0; border-radius: 10px; box-sizing: border-box; transform-origin: 32% 50%; transform: scale(1.01); background-color: rgba(0, 0, 0, 0); overflow: visible; }
+.zipper-box [class*='cover'] { position: absolute; border-style: dashed; border-color: #bcbcbc; background-color: #e2e2e2; box-sizing: border-box; }
+.zipper-box .cover-left { bottom: 0; left: 0; width: 32%; height: 100%; border-width: 0 5px 0 0; border-top-left-radius: 10px !important; border-bottom-left-radius: 10px !important; border-bottom-right-radius: 10px !important; }
+.zipper-box .cover-right { bottom: 0; right: calc(36% - 1px); width: 32%; height: 100%; border-width: 0 0 0 5px; border-top-right-radius: 10px !important; border-bottom-right-radius: 10px !important; border-bottom-left-radius: 10px !important; }
+.zipper-box .cover-right:after{ content: ''; position: absolute; right: -114%; top: 0; width: 120%; height: 100%; border-radius: 0 10px 10px 0; background-color: inherit; }
+.zipper-box .handle { display: none; z-index: 100; position: absolute; top: 0px; left: 32%; margin-left: -12px; width: 26px; height: 32px; cursor: grab; }
+.zipper-box .handle:before { content: ''; z-index: 10; position: absolute; top: 7px; left: 0; width: 100%; height: 100%; border-radius: 8px 8px 4px 4px; background: #acacac; transform: perspective(10px) rotateX(-10deg); }
+.zipper-box .handle:after { content: ''; position: absolute; top: 0; left: 50%; width: 120px; height: 120px; margin-left: -60px; }
+.zipper-box .handle .tag { z-index: 10; position: absolute; height: 36px; line-height: 38px; padding: 0 12px 0 14px; top: 23px; left: 13px; transform-origin: 0 50%; border-radius: 2px 8px 8px 2px; font-size: 1.5rem; font-weight: bold; letter-spacing: 2px; color: #fff; background: tomato; transform: rotate(90deg) perspective(10px) rotateY(-1deg); }
+.zipper-box .handle .tag { -webkit-touch-callout: none; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; }
+.zipper-box .handle .tag:before { z-index: 10; content: ''; display: inline-block; position: absolute; left: -30px; top: 50%; margin-top: -6px; width: 20px; height: 12px; border-radius: 2px; background: #bcbcbc; transform: translateZ(10px); }
+.zipper-box .handle .tag span { display: inline-block; position: absolute; top: 0px; left: -20px; height: 36px; width: 24px; border: 6px solid tomato; border-radius: 12px 0 0 12px; box-sizing: border-box; }
+
+.zipper-box.active .handle { display: block; }
+.zipper-box.end:after { z-index: 100; content: ''; position: absolute; top: 0; left: 0; display: inline-block; width: 100%; height: 100%; }
+.zipper-box.end .cover-left { transition: transform 450ms cubic-bezier(1, 0, 0.8, 1) 300ms, opacity 550ms cubic-bezier(1, 0, 0.8, 1) 350ms; transform-origin: 50% 90%; transform: translateX(-8px); opacity: 0; }
+.zipper-box.end .cover-right { transition: transform 450ms cubic-bezier(1, 0, 0.8, 1) 300ms, opacity 550ms cubic-bezier(1, 0, 0.8, 1) 350ms; transform-origin: 50% 90%; transform: translateX(8px); opacity: 0; }
+.zipper-box.end .handle { transition: opacity 350ms linear 200ms !important; opacity: 0; }
+/* 
+ * clock ui style
+ */
+.clock-box { z-index: 900; }
+.clock-box .number { position: absolute; top: 0; left: 0; right: 0; bottom: 0; opacity: 0; }
+.clock-box .number span { position: absolute; display: inline-block; font-size: 2.6rem; font-weight: 300; color: #acacac; }
+.clock-box .number span { -webkit-touch-callout: none; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; }
+.clock-box .number span.hour-12 { top: 30px; left: 50%; transform: translate(-50%, 0); }
+.clock-box .number span.hour-9 { top: 50%; left: 30px; transform: translate(0 ,-50%); }
+.clock-box .number span.hour-6 { bottom: 30px; right: 50%; transform: translate(50%, 0); }
+.clock-box .number span.hour-3 { bottom: 50%; right: 30px; transform: translate(0 , 50%); }
+
+.clock-box [class*='-needle'] { position: absolute; top: 50%; left: 50%; border-radius: 50%; transform-origin: 50% 50%; transform: scale(0); background: #bcbcbc; }
+.clock-box [class*='-needle'] span { display: inline-block; position: absolute; margin-top: 10px; left: 50%; height: 0; transform: translate(0, -100%); background: inherit; } 
+.clock-box .hour-needle { width: 32px; height: 32px; margin-top: -16px; margin-left: -16px; }
+.clock-box .min-needle { width: 22px; height: 22px; margin-top: -12px; margin-left: -12px; cursor: grab; }
+.clock-box .sec-needle { width: 12px; height: 12px; margin-top: -6px; margin-left: -6px; }
+.clock-box .hour-needle span { margin-left: -10px; width: 20px; border-radius: 8px 8px 0 0; }
+.clock-box .min-needle span { margin-left: -6px; width: 12px; border-radius: 6px 6px 0 0; }
+.clock-box .sec-needle span { margin-left: -3px; width: 6px; border-radius: 3px 3px 0 0; }
+
+.clock-box .hour-needle { transition: transform 0.45s cubic-bezier(1, 0, 0.8, 1) 0s, opacity 0.45s cubic-bezier(1, 0, 0.8, 1) 0s; }
+.clock-box .min-needle { transition: transform 0.45s cubic-bezier(1, 0, 0.8, 1) 0.2s, opacity 0.45s cubic-bezier(1, 0, 0.8, 1) 0s; }
+.clock-box .sec-needle { transition: transform 0.45s cubic-bezier(1, 0, 0.8, 1) 0.4s, opacity 0.45s cubic-bezier(1, 0, 0.8, 1) 0s; }
+.clock-box .hour-needle span { transition: height 0.35s cubic-bezier(1, 0, 0.8, 1) 0.5s; }
+.clock-box .min-needle span { transition: height 0.35s cubic-bezier(1, 0, 0.8, 1) 0.6s; }
+.clock-box .sec-needle span { transition: height 0.35s cubic-bezier(1, 0, 0.8, 1) 0.7s; }
+.clock-box .number { transition: opacity 0.6s ease-in-out 1s; }
+
+.clock-box.start .hour-needle,
+.clock-box.start .min-needle,
+.clock-box.start .sec-needle { transform: scale(1); }
+.clock-box.start .hour-needle span { height: 130px; }
+.clock-box.start .min-needle span { height: 210px; }
+.clock-box.start .sec-needle span { height: 230px; }
+.clock-box.start .number { opacity: 1; }
+.clock-box.start.noTransition > div { transition: none; }
+.clock-box.start.noTransition > div > span { transition: none; }
+.clock-box.end:after { z-index: 100; content: ''; position: absolute; top: 0; left: 0; display: inline-block; width: 100%; height: 100%; }
+.clock-box.end .hour-needle,
+.clock-box.end .min-needle,
+.clock-box.end .sec-needle { opacity: 0; }
+.clock-box .number span { transition: opacity 0.5s linear 1.5s; }
+
+/* 
+ * emoji path ui style
+ */
+.count-box { z-index: 800; }
+.count-box .count-btn { z-index: 100; position: absolute; top: 50%; left: 50%; width: 210px; height: 210px; border: none; border-radius: 50%; transform: translate(-50%, -50%); background: transparent; cursor: pointer; }
+.count-box .emoji { z-index: 10; position: absolute; top: 50%; left: 50%; width: 100px; height: 100px; transition: transform 0.1s ease-in-out 0s; transform: translate(-50%, -50%); }
+.count-box .emoji svg { z-index: 9; position: absolute; top: 50%; left: 50%; width: 100%; height: 100%; transform-origin: 50% 50%; transform: translate(-50%, -50%) scale(0.05); }
+.count-box .emoji .emoji-bg { z-index: 8; position: absolute; top: 50%; left: 50%; width: 180px; height: 180px; border: 12px solid #fff; border-radius: 50%; background: #f0f0f0; transform-origin: 50% 50%; transform: translate(-50%, -50%) scale(0.05); }
+.count-box [class^='count-bg'] { _display: none; position: absolute; top: 50%; left: 50%; width: 100%; height: 100%; border-radius: 50%; transform-origin: 50% 50%; }
+
+.count-box .emoji svg,
+.count-box .emoji .emoji-bg { transition: transform 0.35s ease-in-out 0s; }
+.count-box .emoji.feedback { transform: translate(-50%, -50%) scale(0.95);  }
+
+.count-box.start .emoji svg,
+.count-box.start .emoji .emoji-bg { transition-timing-function: cubic-bezier(1, 0, 0.6, 1.5); transform: translate(-50%, -50%) scale(1); }
+.count-box.end:after { z-index: 100; content: ''; position: absolute; top: 0; left: 0; display: inline-block; width: 100%; height: 100%; }
+
+/* 
+ * debug ui style
+ */
+.debug-box { z-index: 700; cursor: none; }
+.debug-box .bug { position: absolute; display: inline-block; top: 50%; left: 50%; font-size: 1rem; font-weight: 500; color: #f91111; transform-origin: 50% 50%; transform: scale(0.4); }
+.debug-box .magnifying { position: absolute; top: 50%; left: 50%; width: 140px; height: 140px; transform: translate(-50%, -50%); opacity: 0; }
+.debug-box .magnifying .glass { position: absolute; top: 0; left: 0; width: 140px; height: 140px; border: 12px solid #bcbcbc; border-radius: 50%; box-shadow: -14px -14px 18px -8px inset rgba(0, 0, 0, 0.1); background: #f0f0f0; box-sizing: border-box; overflow: hidden; }
+.debug-box .magnifying svg { z-index: 10; position: absolute; top: 26px; left: 19px; width: 50%; height: 50%; transform: rotate(119deg); opacity: 0.7; }
+.debug-box .magnifying .glass .clone-bug { position: absolute; top: -100%; left: -100%; margin-top: -4px; font-size: 1.1rem; font-weight: 500; letter-spacing: -1px; transform-origin: 50% 50%; transform: translate(-50%, -50%) scale(1); white-space: nowrap; }
+.debug-box .magnifying .glass .clone-bug { -webkit-touch-callout: none; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; }
+.debug-box .magnifying .glass-handle { position: absolute; top: 115px; right: 15px; height: 70px; width: 16px; border-radius: 6px; transform-origin: 50% 0; transform: rotate(-45deg); transform: perspective(70px) rotateX(10deg) rotateY(-10deg) rotateZ(-45deg); box-shadow: -15px -14px 15px -5px rgba(0, 0, 0, 0.15); background: #bcbcbc; }
+
+.debug-box .magnifying { transition: transform 0.6s cubic-bezier(1, 0, 0.6, 1.5) 0s, opacity 0.45s ease-in-out 0.2s; }
+.debug-box .magnifying .glass .clone-bug:after { content: ''; display: inline-block; position: absolute; top: 50%; left: -5%; margin-top: -3px; width: 0%; height: 1px; background-color: #65c32f; transition: width 0.4s cubic-bezier(1, 0, 0.6, 1.5) 0s; transform-origin: 0% 50%; transform: rotate(12deg) translateY(-50%); }
+
+.debug-box.start .magnifying { transform: translate(-50%, -50%); opacity: 1; }
+.debug-box.end:after { z-index: 100; content: ''; position: absolute; top: 0; left: 0; display: inline-block; width: 100%; height: 100%; }  
+.debug-box.end .bug { display: none; }
+.debug-box.end .magnifying .glass .clone-bug { transition: color 0.3s cubic-bezier(1, 0, 0.6, 1.5) 0s; }
+.debug-box.end .magnifying .glass .clone-bug:after { width: 110%; }
+
+/* 
+ * scroll ui style
+ */
+.scroll-box { z-index: 600; }
+.scroll-box .words { display: inline-block; position: absolute; top: 50%; left: 50%; width: 100%; height: 40px; transform: translate(-50%, -50%); text-align: center; overflow: hidden; }
+.scroll-box .words:before { content: ''; z-index: 1; display: inline-block; position: absolute; top: 0; left: 0; width: 100%; height: 10px; background-image: linear-gradient(to bottom, #f5f5f5, rgba(240, 240, 240, 0)); }
+.scroll-box .words:after { content: ''; z-index: 1; display: inline-block; position: absolute; bottom: 0; left: 0; width: 100%; height: 10px; background-image: linear-gradient(to top, #f5f5f5, rgba(240, 240, 240, 0)); }
+.scroll-box .words ul { display: inline-block; height: 100%; transform: translate(0, 40px); box-sizing: border-box; overflow: hidden; }
+.scroll-box .words ul > li.alphabet { z-index: -1; position: relative; display: inline-block; line-height: 40px; width: 24px; font-size: 3rem; font-weight: 400; vertical-align: top; }
+.scroll-box .words ul > li.alphabet { transition: padding 0.6s ease-in-out 0s; }
+.scroll-box .words ul > li.alphabet > span { display: inline-block; width: 100%; }
+
+.scroll-box .control-area { position: absolute; top: 0; left: 0; right: 0; bottom: 0; }
+.scroll-box .control-area::-webkit-scrollbar { width: 14px; }
+.scroll-box .control-area::-webkit-scrollbar-thumb { border-radius: 10px; border: 4px solid rgba(0, 0, 0, 0); background-color: #bcbcbc ; background-clip: padding-box; }
+.scroll-box .control-area::-webkit-scrollbar-track { border-radius: 10px; background-color: rgba(0, 0, 0, 0); }
+
+.scroll-box.start .words ul { transition: transform 0.55s cubic-bezier(1, 0, 0.6, 1.5) 0.2s; transform: translate(0, 0); }
+.scroll-box.end .words ul > li.alphabet { padding-left: 3px; padding-right: 3px; }

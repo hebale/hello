@@ -4,165 +4,108 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
-  <title>Project</title>
+  <title>Hello</title>
 
-  <!-- CSS -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <!-- webfont -->
+  <link rel="preconnect" href="https://fonts.googleapis.com"> 
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Aldrich&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="./res/css/uiDesign.css" />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@300;400;500&display=swap" rel="stylesheet">
 
-  <!-- Google Tag Manager -->
-  <script>
-    (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({
-      'gtm.start': new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0], j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-PVXDF5F');
-  </script>
-  <!-- End Google Tag Manager -->
-
-  <!-- Global site tag (gtag.js) - Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-RK75MYJYQ3"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'G-RK75MYJYQ3');
-  </script>
-
-
-  <!-- JS -->
-  <script src="./res/js/uiCommon.js"></script>
+  <link rel="stylesheet" href="./assets/css/style.css" />
+  <script src="./assets/js/common.js"></script>
+  <script src="./assets/js/ui.js"></script>
 </head>
 <body>
-  <main class="fin__ish">
+  <main>
     <!-- [COPY] -->
     <article>
-      <h3 class="title">Hello,</h3>
-      <div class="mainCopy">
-        <span class="intro"></span><br> <!-- I'm a publisher -->
-        <span class="keyword"></span><br> <!-- who keeps time well, -->
-        <span class="keyword"></span><br> <!-- makes people smile, -->
-        <span class="keyword"></span><br> <!-- is meticulous at work, -->
-        <span class="keyword"></span> <!-- and has potential. -->
-      </div>
+      <h3>안녕하세요,<br>저는 프론트엔드 개발자 입니다.</h3>
+      <div class="main-copy"></div>
 
-      <!-- SHORTCUT -->
-      <ul class="shortCut">
-        <li><button type="button" class="refresh">#replay</button></li>
-        <li><button type="button" class="ui-zipper">#zipper</button></li>
-        <li><button type="button" class="ui-clock">#clock</button></li>
-        <li><button type="button" class="ui-emoji">#emoji</button></li>
-        <li><button type="button" class="ui-bug">#bug</button></li>
-        <li><button type="button" class="ui-scroll">#scroll</button></li>
+      <!-- short-cut -->
+      <ul class="short-cut">
+        <!-- <li><button type="button" class="refresh">#replay</button></li> -->
+        <li><button type="button" class="zipper">#zipper</button></li>
+        <li><button type="button" class="clock">#clock</button></li>
+        <li><button type="button" class="emoji">#emoji</button></li>
+        <li><button type="button" class="bug">#bug</button></li>
+        <li><button type="button" class="scroll">#scroll</button></li>
       </ul>
-
-      <div class="copyRight">
-        <span>010.3414.7693</span>
-        <span>hebaleman@gmail.com</span>
-      </div>
-      <div class="finishWord">
+      
+      <div class="thanks">
         Thanks<br>for<br>watching!
+      </div>
+
+      <div class="copy-right">
+        <a href="mailto:hebaleman@gmail.com">e-mail</a>
+        <a href="https://github.com/hebale/hello">github</a>
       </div>
     </article>
 
-    <!-- [ZIPPER] -->
-    <section class="zipBox">
-      <div class="zipHandle">
-        <span class="zipTag"><span class="chain"></span>YJK</span>
+    <!-- zipper-box -->
+    <section class="zipper-box">
+      <div class="handle">
+        <span class="tag">
+          <span class="chain"></span>YJK
+        </span>
       </div>
     </section>
 
-    <!-- [WHEEL] -->
-    <section class="clockBox">
-      <div class="clockNumber">
-        <span class="num12">12</span>
-        <span class="num9">9</span>
-        <span class="num6">6</span>
-        <span class="num3">3</span>
+    <!-- clock-box -->
+    <section class="clock-box">
+      <div class="number">
+        <span class="hour-12">12</span>
+        <span class="hour-9">9</span>
+        <span class="hour-6">6</span>
+        <span class="hour-3">3</span>
       </div>
-      <div class="hourNeedle"><span></span></div>
-      <div class="minNeedle"><span></span></div>
-      <div class="secNeedle"><span class='test'></span></div>
+      <div class="hour-needle"><span></span></div>
+      <div class="min-needle"><span></span></div>
+      <div class="sec-needle"><span></span></div>
     </section>
 
-    <!-- [COUNTING] -->
-    <section class="countBox">
-      <button type="button" class="countBtn"></button>
+    <!-- count-box-->
+    <section class="count-box">
+      <button type="button" class="count-btn"></button>
       <div class="emoji">
         <svg x="0px" y="0px" viewBox="0 0 420 420">
           <circle fill="#fff" cx="80" cy="130" r="40"/>
           <circle fill="#fff" cx="340" cy="130" r="40"/>
           <path class="mouth" stroke="#fff" fill="#fff"
                 d=" M 20 400
-                                C 0 380 10 350 30 330
-                                C 50 310 110 260 210 260
-                                C 310 260 370 310 390 330
-                                C 410 350 420 380 400 400
-                                C 390 410 370 410 350 410
-                                C 320 410 270 410 210 410
-                                C 220 410 130 410 80 410
-                                C 50 410 30 410 20 400"/>
+                    C 0 380 10 350 30 330
+                    C 50 310 110 260 210 260
+                    C 310 260 370 310 390 330
+                    C 410 350 420 380 400 400
+                    C 390 410 370 410 350 410
+                    C 320 410 270 410 210 410
+                    C 220 410 130 410 80 410
+                    C 50 410 30 410 20 400"/>
         </svg>
-        <div class="emojiBg"></div>
+        <div class="emoji-bg"></div>
       </div>
     </section>
 
     <!-- [POINTER] -->
-    <section class="mouseBox">
+    <section class="debug-box">
       <div class="bug">BUG</div>
       <div class="magnifying">
+        <svg x="0px" y="0px" viewBox="0 0 420 420">
+          <path class="mouth" stroke="#fff" fill="#fff" d="M 20 270 C 40 250 70 260 90 280 C 110 300 150 330 210 330 C 270 330 310 300 330 280 C 350 260 380 250 400 270 C 420 290 410 320 390 340 C 370 360 310 410 210 410 C 110 410 50 360 30 340 C 10 320 0 290 20 270"></path>
+        </svg>
         <div class="glass">
-          <span class="copyBug">BUG<span class="caret"></span></span>
+          <span class="clone-bug">BUG<span class="caret"></span></span>
         </div>
-        <div class="glassHandle"></div>
+        <div class="glass-handle"></div>
       </div>
     </section>
 
     <!-- [SCROLL] -->
-    <section class="scrollBox">
-      <div class="words">
-        <ul>
-          <li class="alphabet">
-            <span>S</span><span>T</span><span>U</span><span>V</span><span>W</span><span>X</span><span>Y</span><span>Z</span><span>A</span><span>B</span><span>C</span><span>D</span><span>E</span><span>F</span><span>G</span><span>H</span><span>I</span><span>J</span><span>K</span><span>L</span><span>M</span><span>N</span><span>O</span><span>P</span><span>Q</span><span>R</span><span>S</span>
-          </li>
-          <li class="alphabet">
-            <span>C</span><span>D</span><span>E</span><span>F</span><span>G</span><span>H</span><span>I</span><span>J</span><span>K</span><span>L</span><span>M</span><span>N</span><span>O</span><span>P</span><span>Q</span><span>R</span><span>S</span><span>T</span><span>U</span><span>V</span><span>W</span><span>X</span><span>Y</span><span>Z</span><span>A</span><span>B</span><span>C</span>
-          </li>
-          <li class="alphabet">
-            <span>R</span><span>S</span><span>T</span><span>U</span><span>V</span><span>W</span><span>X</span><span>Y</span><span>Z</span><span>A</span><span>B</span><span>C</span><span>D</span><span>E</span><span>F</span><span>G</span><span>H</span><span>I</span><span>J</span><span>K</span><span>L</span><span>M</span><span>N</span><span>O</span><span>P</span><span>Q</span><span>R</span>
-          </li>
-          <li class="alphabet">
-            <span>O</span><span>P</span><span>Q</span><span>R</span><span>S</span><span>T</span><span>U</span><span>V</span><span>W</span><span>X</span><span>Y</span><span>Z</span><span>A</span><span>B</span><span>C</span><span>D</span><span>E</span><span>F</span><span>G</span><span>H</span><span>I</span><span>J</span><span>K</span><span>L</span><span>M</span><span>N</span><span>O</span>
-          </li>
-          <li class="alphabet">
-            <span>L</span><span>M</span><span>N</span><span>O</span><span>P</span><span>Q</span><span>R</span><span>S</span><span>T</span><span>U</span><span>V</span><span>W</span><span>X</span><span>Y</span><span>Z</span><span>A</span><span>B</span><span>C</span><span>D</span><span>E</span><span>F</span><span>G</span><span>H</span><span>I</span><span>J</span><span>K</span><span>L</span>
-          </li>
-          <li class="alphabet">
-            <span>L</span><span>M</span><span>N</span><span>O</span><span>P</span><span>Q</span><span>R</span><span>S</span><span>T</span><span>U</span><span>V</span><span>W</span><span>X</span><span>Y</span><span>Z</span><span>A</span><span>B</span><span>C</span><span>D</span><span>E</span><span>F</span><span>G</span><span>H</span><span>I</span><span>J</span><span>K</span><span>L</span>
-          </li>
-          <li class="alphabet">
-            <span>I</span><span>J</span><span>K</span><span>L</span><span>M</span><span>N</span><span>O</span><span>P</span><span>Q</span><span>R</span><span>S</span><span>T</span><span>U</span><span>V</span><span>W</span><span>X</span><span>Y</span><span>Z</span><span>A</span><span>B</span><span>C</span><span>D</span><span>E</span><span>F</span><span>G</span><span>H</span><span>I</span>
-          </li>
-          <li class="alphabet">
-            <span>N</span><span>O</span><span>P</span><span>Q</span><span>R</span><span>S</span><span>T</span><span>U</span><span>V</span><span>W</span><span>X</span><span>Y</span><span>Z</span><span>A</span><span>B</span><span>C</span><span>D</span><span>E</span><span>F</span><span>G</span><span>H</span><span>I</span><span>J</span><span>K</span><span>L</span><span>M</span><span>N</span>
-          </li>
-          <li class="alphabet">
-            <span>G</span><span>H</span><span>I</span><span>J</span><span>K</span><span>L</span><span>M</span><span>N</span><span>O</span><span>P</span><span>Q</span><span>R</span><span>S</span><span>T</span><span>U</span><span>V</span><span>W</span><span>X</span><span>Y</span><span>Z</span><span>A</span><span>B</span><span>C</span><span>D</span><span>E</span><span>F</span><span>G</span>
-          </li>
-        </ul>
-      </div>
+    <section class="scroll-box">
+      <div class="words">SCROLLING</div>
     </section>
   </main>
 
-  <div class="working active">
-    <div>
-      <span>Sorry,</span>
-      MOBILE IS<br>
-      COMING SOON!
-    </div>
-  </div>
-
-  <script src="./res/js/uiDesign.js"></script>
+  <script src="./assets/js/script.js"></script>
 </body>
 </html>

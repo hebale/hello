@@ -1,0 +1,52 @@
+/*
+ * zipper ui style
+ */
+.mobile .zipper-box { height: 100%; }
+.mobile .zipper-box .cover-top { top: 16%; left: 0; right: 0; height: calc(42% - 1px); border-width: 0 0 5px 0; }
+.mobile .zipper-box .cover-top:after{ content: ''; position: absolute; left: 0; right: 0; bottom: 100%; height: 50%; background: #e2e2e2; }
+.mobile .zipper-box .cover-bottom { bottom: 0; left: 0; right: 0; height: 42%; border-width: 5px 0 0 0; }
+.mobile .zipper-box .handle { top: 58%; left: 0; margin-top: 4px; margin-left: 0; transform: translate(6px, -21px) rotate(270deg); }
+
+.mobile .zipper-box.end .cover-top { transition: transform 450ms cubic-bezier(1, 0, 0.8, 1) 300ms, opacity 550ms cubic-bezier(1, 0, 0.8, 1) 350ms; transform-origin: 50% 90%; transform: translateY(-8px); opacity: 0;  }
+.mobile .zipper-box.end .cover-bottom { transition: transform 450ms cubic-bezier(1, 0, 0.8, 1) 300ms, opacity 550ms cubic-bezier(1, 0, 0.8, 1) 350ms; transform-origin: 50% 90%; transform: translateY(8px); opacity: 0; }
+.mobile .zipper-box.end .handle { transition: opacity 350ms linear 200ms !important; opacity: 0; }
+
+/*
+ * clock ui style
+ */
+.mobile .clock-box .number span { font-size: 2.2rem; }
+.mobile .clock-box .number span.hour-12 { top: 20px; }
+.mobile .clock-box .number span.hour-9 { left: 20px; }
+.mobile .clock-box .number span.hour-6 { bottom: 20px; }
+.mobile .clock-box .number span.hour-3 { right: 20px; }
+.mobile .clock-box .number sapn { font-size: 1.8rem; }
+.mobile .clock-box .hour-needle { width: 22px; height: 22px; margin-top: -11px; margin-left: -11px; }
+.mobile .clock-box .min-needle { width: 18px; height: 18px; margin-top: -10px; margin-left: -10px; }
+.mobile .clock-box .sec-needle { width: 12px; height: 12px; margin-top: -6px; margin-left: -6px; }
+.mobile .clock-box .hour-needle span { margin-left: -8px; width: 16px; }
+.mobile .clock-box .min-needle span { margin-left: -6px; width: 12px; }
+.mobile .clock-box .sec-needle span { margin-left: -3px; width: 6px; }
+
+.mobile .clock-box.start .hour-needle span { height: 100px; }
+.mobile .clock-box.start .min-needle span,
+.mobile .clock-box.start .sec-needle span { height: 130px; }
+
+/*
+ * emoji path ui style
+ */
+.mobile .count-box .count-btn { -webkit-tap-highlight-color: rgba(0, 0, 0, 0); }
+.mobile .count-box .emoji { width: 80px; height: 80px; }
+.mobile .count-box .emoji .emoji-bg { width: 160px; height: 160px; border-width: 10px; }
+
+/*
+ * debug ui style
+ */
+.mobile .debug-box .magnifying { top: auto; left: auto; right: -100px; bottom: -100px; width: 150px; height: 150px; transform: translate(calc(-100% + 30px), calc(-100% + 30px)); }
+.mobile .debug-box .magnifying .glass { border-width: 10px; }
+.mobile .debug-box .magnifying .glass-handle { top: 80px; right: 6px; height: 16px; width: 16px; border: 22px solid #a0a0a0; border-radius: 50%; border-color: rgba(0, 0, 0, 0) #bcbcbc #bcbcbc rgba(0, 0, 0, 0); box-shadow: none; transform: none; background: rgba(0, 0, 0, 0); }
+
+/*
+ * scroll ui style
+ */
+.mobile .scroll-box .words ul > li.alphabet { width: 20px; font-size: 2.6rem; }
+.mobile .scroll-box.end .words ul > li.alphabet { padding-left: 2px; padding-right: 2px; }
