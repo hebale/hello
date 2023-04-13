@@ -633,6 +633,7 @@
 				on: {
 					init: null,
 					append: null,
+					beforeTyping: null,
 					destroy: null,
 				},
 			};
@@ -648,6 +649,8 @@
 			if(o.caret) o.target.classList.add('ui-caret');
 			if(typeof o.on.init === 'function') o.on.init(o);
 
+			if(typeof o.on.beforeTyping === 'function') o.on.beforeTyping();
+
 			const typingFn = o => {
 				let startTime = null;
 				let originContent = o.br ? `${o.target.innerHTML}<br>` : o.target.innerHTML;
@@ -655,19 +658,17 @@
 					if(o.element) {
 						let dom = document.createElement(o.element);
 						dom.textContent = o.text;
-	
 						return dom;
 					}
 					return o.text;
 				})();
-	
+
 				let animationLoopFn = timeStamp => {
 					if(!startTime) startTime = timeStamp;
 					if((timeStamp - startTime) < o.duration) {
 						let typeUnit = o.duration / o.text.length;
 					
 						o.progress = (timeStamp - startTime) / o.duration
-						
 						o.target.innerHTML = (() => {
 							if(o.element) {
 								typingContent.textContent = o.text.substring(0, parseInt((timeStamp - startTime) / typeUnit, 10))
@@ -675,17 +676,14 @@
 							}
 							return originContent + typingContent.substring(0, parseInt((timeStamp - startTime) / typeUnit, 10));
 						})();
-	
 						requestAnimationFrame(animationLoopFn);
 					} else {
 						o.target.innerHTML = (() => {
-	
 							if(o.element) {
 								typingContent.textContent = o.text;
 								return originContent + typingContent.outerHTML
 							} 
 							return originContent + typingContent;
-							
 						})();
 					};
 				};

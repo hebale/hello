@@ -72,7 +72,7 @@ const svgEmojiMap = {
 };
 
 /* typing */
-const UiTyping = new Pi.typing('.main-copy'); 
+const UiTyping = new Pi.typing('.main-copy', { duration: 1500 }); 
 
 /* zipper */
 const UiZipper = new Pi.zipper('.zipper-box', {
@@ -107,6 +107,7 @@ const UiZipper = new Pi.zipper('.zipper-box', {
 						if(!o.container.classList.contains('end')) {
 							setTimeout(() => {
 								o.container.classList.remove('active');
+								document.querySelector('.main-copy').classList.add('start');
 								document.querySelector('.clock-box').classList.add('active');
 								
 								setTimeout(() => {
@@ -118,9 +119,8 @@ const UiZipper = new Pi.zipper('.zipper-box', {
 									
 									/*  typing */
 									UiTyping.append({
-										text: '시간약속을 잘지킵니다.',
+										text: '시간약속을 잘지키는',
 										element: 'span',
-										duration: 800
 									});
 	
 									setTimeout(() => {
@@ -189,10 +189,9 @@ const UiWheel = new Pi.wheel('.min-needle', {
 								
 								/*  typing */
 								UiTyping.append({
-									text: '주변 사람들을 즐겁게 합니다.',
+									text: '주변 사람들을 즐겁게 하는',
 									element: 'span',
 									br: true,
-									duration: 1000,
 								});
 							}, 800)
 						}
@@ -275,10 +274,9 @@ const UiCounting = new Pi.counting('.count-box', {
 
 							/* typing */
 							UiTyping.append({
-								text: '꼼꼼한 성격을 가지고 있습니다.',
+								text: '꼼꼼한 성격을 가지고 있는',
 								element: 'span',
 								br: true,
-								duration: 1000,
 							});
 						}, 650);
 					}
@@ -366,10 +364,9 @@ const UiDebug = new Pi.pointer('.magnifying', {
 
 												/* typing */
 												UiTyping.append({
-													text: '잠재력을 가지고 있습니다.',
+													text: '잠재력을 가지고 있는',
 													element: 'span',
 													br: true,
-													duration: 1000,
 												});
 											}, 600)
 										}, 1200)
@@ -464,18 +461,18 @@ const UiScroll = new Pi.scroll('.scroll-box', {
 				
 				setTimeout(() => {
 					o.target.classList.add('end');
-					
+
 					setTimeout(() => {
-						setTimeout(() => {
-							o.target.classList.remove('active');
-							uiReset();
-						}, 600);
-
-						document.querySelector('main').classList.add('finish');
-
+						document.querySelector('.main-copy').classList.remove('start');
+						document.querySelector('.main-copy').classList.add('end');
+						
 						// thanks
 						var nowC = 0, newC;
 						setInterval(function(){
+							document.querySelector('main').classList.add('finish');
+							o.target.classList.remove('active');
+							uiReset();
+
 							if(nowC > processColorCode.length - 1) nowC = 0;
 							if(nowC === processColorCode.length - 1){
 								newC = 0;
@@ -489,7 +486,7 @@ const UiScroll = new Pi.scroll('.scroll-box', {
 							});
 
 							nowC++;
-						}, 600);
+						}, 650);
 
 
 					},1000);

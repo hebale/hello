@@ -12,11 +12,17 @@ body { margin: 0; width: 100%; height: 100%; color: #303030; overflow: hidden; }
 main { position: fixed; top: 50%; left: 50%; width: 1280px; height: 800px; border-radius: 10px; transform: translate(-50%, -50%); box-shadow: 12px 12px 35px -16px rgba(0, 0, 0, 0.25); }
 main article { z-index: 10000; position: absolute; left: 0; top: 0; padding: 80px 0 60px; width: 32%; height: 100%; box-sizing: border-box; background: #fff; overflow: hidden; }
 
-main article h3 { line-height: 1.4; padding: 0 34px; font-size: 2.4rem; font-weight: 500; }
-main article .main-copy { padding: 34px; font-size: 1.2rem; word-break: break-all; }
-main article .main-copy span { position: relative; display: inline-block; padding: 4px 0; font-size: 1.8rem; vertical-align: middle; }
-main article .main-copy span:last-child { font-weight: 500; }
-main article .main-copy.ui-caret:after { margin-left: 6px; height: 1.8rem; }
+main article h3 { position: relative; line-height: 1.6; padding: 0 34px; font-size: 2.4rem; font-weight: 300; }
+main article h3 span { display: inline-block; position: absolute; top: 3px; left: 32px; line-height: 32px; width: 0; color: #fff; background: #303030; white-space: nowrap; overflow: hidden; transition: width 0.65s; }
+main article .main-copy { padding: 0 34px; word-break: break-all; transition: margin 0.25s linear, min-height 0.25s linear; }
+main article .main-copy span { position: relative; display: inline-block; padding: 5px 0; line-height: 1.2; font-size: 2.4rem; font-weight: 300; vertical-align: middle; transition: font-size 0.3s linear 0.4s; }
+main article .main-copy.ui-caret:after { display: none; opacity: 0; transition: opacity 0.1s linear 0.3s; }
+
+main article .main-copy.start { margin: 10px 0; min-height: 38px; }
+main article .main-copy.start span:last-child { font-weight: 500; }
+main article .main-copy.start.ui-caret:after { display: inline-block; margin: 7px 0 7px 6px; height: 2.4rem; opacity: 1; }
+main article .main-copy.end { margin: 24px 0; }
+main article .main-copy.end + h3 span { padding-left: 2px; width: 244px; }
 
 main article ul.short-cut { z-index: -1; position: absolute; left: 0; bottom: 100px; padding: 0 34px; margin: 0; width: 100%; }
 main article ul.short-cut > li { position: relative; left: 20px; padding: 6px 0; opacity: 0; }
@@ -67,10 +73,15 @@ main.finish .clock-box * { transition: none !important; }
 .mobile main article .thanks { top: 25vh; left: 50%; padding: 40px 32px; width: 160px; height: 160px; font-size: 2.4rem; transform: translate(-50%, -50%); opacity: 0; transition: opacity 0.6s linear 1.1s; }
 .mobile main section { left: 0; right: 0; height: 58%; }
 
-.mobile main article h3 { padding: 0 30px; font-size: 2rem; font-weight: 500; }
-.mobile main article .main-copy { padding: 14px 30px; }
-.mobile main article .main-copy span { position: relative; display: inline-block; font-size: 1.5rem; }
-.mobile main article .main-copy.ui-caret:after { margin-left: 4px; height: 1.6rem; }
+.mobile main article h3 { padding: 0 30px; font-size: 1.8rem; }
+.mobile main article h3 span { top: 2px; left: 28px; line-height: 28px; }
+.mobile main article .main-copy { padding: 0 30px; }
+.mobile main article .main-copy span { position: relative; display: inline-block; padding: 3px 0; font-size: 1.8rem; }
+
+.mobile main article .main-copy.start { margin: 14px 0; min-height: 22px; }
+.mobile main article .main-copy.start.ui-caret:after { display: inline-block; margin: 2px 0 2px 4px; height: 1.8rem; opacity: 1; }
+.mobile main article .main-copy.end { margin: 14px 0; }
+.mobile main article .main-copy.end + h3 span { width: 182px; }
 
 /* short-cut */
 .mobile main article ul.short-cut { padding: 0; margin: -10px 0 0 -10px; top: calc(55vh + 10px); bottom: auto; width: calc(100% + 10px); font-size: 0; text-align: center; }
