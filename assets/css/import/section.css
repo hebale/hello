@@ -31,7 +31,7 @@
 .clock-box .number span.hour-6 { bottom: 30px; right: 50%; transform: translate(50%, 0); }
 .clock-box .number span.hour-3 { bottom: 50%; right: 30px; transform: translate(0 , 50%); }
 
-.clock-box [class*='-needle'] { position: absolute; top: 50%; left: 50%; border-radius: 50%; transform-origin: 50% 50%; transform: scale(0); background: #bcbcbc; }
+.clock-box [class*='-needle'] { position: absolute; top: 50%; left: 50%; border-radius: 50%; transform-origin: 50% 50%; transform: scale(0); background: #bcbcbc; opacity: 0; }
 .clock-box [class*='-needle'] span { display: inline-block; position: absolute; margin-top: 10px; left: 50%; height: 0; transform: translate(0, -100%); background: inherit; } 
 .clock-box .hour-needle { width: 32px; height: 32px; margin-top: -16px; margin-left: -16px; }
 .clock-box .min-needle { width: 22px; height: 22px; margin-top: -12px; margin-left: -12px; cursor: grab; }
@@ -47,6 +47,8 @@
 .clock-box .min-needle span { transition: height 0.35s cubic-bezier(1, 0, 0.8, 1) 0.6s; }
 .clock-box .sec-needle span { transition: height 0.35s cubic-bezier(1, 0, 0.8, 1) 0.7s; }
 .clock-box .number { transition: opacity 0.6s ease-in-out 1s; }
+
+.clock-box.active [class*='-needle'] { opacity: 1; }
 
 .clock-box.start .hour-needle,
 .clock-box.start .min-needle,

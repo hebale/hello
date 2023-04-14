@@ -308,7 +308,7 @@ const UiDebug = new Pi.pointer('.magnifying', {
 		},
 		move: (o) => {
 			const startProgress = 0.7,
-						endProgress = 0.09;
+						endProgress = 0.06;
 
 			let bugInfo = {
 				y: Math.abs(o.pageY - o.container.getBoundingClientRect().top - document.querySelector('html').scrollTop),
