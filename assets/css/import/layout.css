@@ -10,7 +10,7 @@ body { margin: 0; width: 100%; height: 100%; color: #303030; overflow: hidden; }
     [COPY]
 ==================== */
 main { position: fixed; top: 50%; left: 50%; width: 1280px; height: 800px; border-radius: 10px; transform: translate(-50%, -50%); box-shadow: 12px 12px 35px -16px rgba(0, 0, 0, 0.25); }
-main article { z-index: 10000; position: absolute; left: 0; top: 0; padding: 80px 0 60px; width: 32%; height: 100%; box-sizing: border-box; background: #fff; overflow: hidden; }
+main article { z-index: 10000; position: absolute; left: 0; top: 0; padding: 80px 0 60px; width: 32%; height: 100%; box-sizing: border-box; background: #fff; }
 
 main article h3 { position: relative; line-height: 1.6; padding: 0 34px; font-size: 2.4rem; font-weight: 300; }
 main article h3 span { display: inline-block; position: absolute; top: 3px; left: 32px; line-height: 32px; width: 0; color: #fff; background: #303030; white-space: nowrap; overflow: hidden; transition: width 0.65s; }
@@ -30,7 +30,8 @@ main article ul.short-cut > li button { padding: 0; background: none; border: no
 main article ul.short-cut > li button.active { font-weight: 500; }
 main article ul.short-cut > li button:before { content: '#'; padding-right: 1px; }
 
-main article .thanks { position: absolute; top: 48%; left: 720px; padding: 54px 40px; width: 200px; height: 200px; border-radius: 50%; font-size: 2.8rem; font-weight: 400; transform-origin: 50% 50%; transform: translate(0, -50%); letter-spacing: -1px; box-sizing: border-box; color: #fff; }
+main article .thanks { position: absolute; top: 48%; left: 770px; padding: 54px 40px; width: 200px; height: 200px; border-radius: 50%; font-size: 2.8rem; font-weight: 400; transform-origin: 50% 50%; transform: translate(0, -50%); letter-spacing: -1px; box-sizing: border-box; color: #fff; }
+main article .thanks { opacity: 0; transition: opacity 0.65s linear 0.45s; }
 
 main article .copy-right { position: absolute; left: 0; bottom: 0; width: 100%; padding: 16px 30px 26px; font-size: 0; box-sizing: border-box; }
 main article .copy-right a { position: relative; display: inline-block; font-size: 1.2rem; }
@@ -50,7 +51,8 @@ main article ul.short-cut > li:nth-child(6) { transition: all 0.55s ease 1.9s; }
 main section { position: absolute; top: 0; left: 32%; right: 0; bottom: 0; background-color: #f5f5f5; overflow: hidden; }
 main section.active { z-index: 10001; } 
 
-main.finish article { width: 100%; transition: width 0.45s linear 0.6s; }
+main.finish article { _width: 100%; transition: width 0.45s linear 0.6s; }
+main.finish article .thanks { opacity: 1; }
 main.finish article ul.short-cut { z-index: 0; }
 main.finish article ul.short-cut > li { left: 0; opacity: 1;}
 main.finish .zipper-box { left: 32%; border-radius: 0; transform: scale(1); }
@@ -64,9 +66,9 @@ main.finish .clock-box * { transition: none !important; }
 /*
  * mobile layout style
  */
-.mobile main { width: 100%; height: 100%; }
+.mobile main { width: 100%; height: 100%; background: #fff; }
 .mobile main article { top: auto; right: 0; bottom: 0; padding-top: 20px; width: 100%; height: 44%; }
-.mobile main article .thanks { top: 30vh; left: 50%; padding: 40px 32px; width: 160px; height: 160px; font-size: 2.4rem; transform: translate(-50%, -50%); opacity: 0; transition: opacity 0.6s linear 1.1s; }
+.mobile main article .thanks { position: fixed; top: 26vh; left: 50%; padding: 40px 32px; width: 160px; height: 160px; font-size: 2.4rem; transform: translate(-50%, -50%); opacity: 0; transition: opacity 0.6s linear 1.1s; }
 .mobile main section { left: 0; right: 0; height: 56%; }
 
 .mobile main article h3 { padding: 0 24px; font-size: 1.8rem; }
@@ -77,19 +79,21 @@ main.finish .clock-box * { transition: none !important; }
 .mobile main article .main-copy.start { margin: 12px 0; height: 26px; }
 .mobile main article .main-copy.start.ui-caret:after { display: inline-block; margin: 2px 0 2px 4px; height: 1.8rem; width: 1px; opacity: 1; }
 .mobile main article .main-copy.end { margin: 12px 0; }
-.mobile main article .main-copy.end + h3 span { width: 132px; }
+.mobile main article .main-copy.end + h3 span { width: 183px; }
 
 /* short-cut */
-.mobile main article ul.short-cut { padding: 0 24px; margin: -8px 0 0 -8px; bottom: 60px; width: calc(100% + 10px); font-size: 0; }
+.mobile main article ul.short-cut { bottom: 56px; padding: 0 24px; margin: -8px 0 0 -8px; width: calc(100% + 10px); font-size: 0; }
 .mobile main article ul.short-cut > li { margin: 8px 0 0 8px; padding: 4px 0; display: inline-block; }
 .mobile main article ul.short-cut > li button { font-size: 1.4rem; }
 
 .mobile main article .copy-right { padding-left: 24px; padding-right: 24px; }
 .mobile main article .copy-right a + a { margin-left: 10px; }
+.mobile main article .copy-right a + a:before { display: none; }
 
 /* finish */
-.mobile main.finish article { padding-top: calc(56vh + 20px); height: 100%; transition: height 0.5s linear 0.4s, padding 0.5s linear 0.4s; }
+/* .mobile main.finish article { padding-top: calc(56vh + 20px); height: 100%; transition: height 0.5s linear 0.4s, padding 0.5s linear 0.4s; } */
 .mobile main.finish article .thanks { opacity: 1; }
+/* .mobile main.finish article:after { content: ''; display: inline-block; width: 100%; height: 56vh; transform: trans;} */
 
 .mobile main.finish .zipper-box { left: 0; height: 56%; }
 .mobile main.finish .zipper-box .cover-top { top: 0; height: calc(50% - 1px); }

@@ -86,12 +86,12 @@
  */
 .debug-box { z-index: 700; cursor: none; }
 .debug-box .bug { position: absolute; display: inline-block; top: 50%; left: 50%; font-size: 1rem; font-weight: 500; color: #f91111; transform-origin: 50% 50%; transform: scale(0.4); }
-.debug-box .magnifying { position: absolute; top: 50%; left: 50%; width: 140px; height: 140px; transform: translate(-50%, -50%); opacity: 0; }
-.debug-box .magnifying .glass { position: absolute; top: 0; left: 0; width: 140px; height: 140px; border: 12px solid #bcbcbc; border-radius: 50%; box-shadow: -14px -14px 18px -8px inset rgba(0, 0, 0, 0.1); background: #f0f0f0; box-sizing: border-box; overflow: hidden; }
+.debug-box .magnifying { position: absolute; top: 50%; left: 50%; width: 160px; height: 160px; transform: translate(-50%, -50%); opacity: 0; }
+.debug-box .magnifying .glass { position: absolute; top: 0; left: 0; width: 160px; height: 160px; border: 12px solid #bcbcbc; border-radius: 50%; box-shadow: -14px -14px 18px -8px inset rgba(0, 0, 0, 0.1); background: #f0f0f0; box-sizing: border-box; overflow: hidden; }
 .debug-box .magnifying svg { z-index: 10; position: absolute; top: 26px; left: 19px; width: 50%; height: 50%; transform: rotate(119deg); opacity: 0.7; }
 .debug-box .magnifying .glass .clone-bug { position: absolute; top: -100%; left: -100%; margin-top: -4px; font-size: 1.1rem; font-weight: 500; letter-spacing: -1px; transform-origin: 50% 50%; transform: translate(-50%, -50%) scale(1); white-space: nowrap; }
 .debug-box .magnifying .glass .clone-bug { -webkit-touch-callout: none; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; }
-.debug-box .magnifying .glass-handle { position: absolute; top: 115px; right: 15px; height: 70px; width: 16px; border-radius: 6px; transform-origin: 50% 0; transform: rotate(-45deg); transform: perspective(70px) rotateX(10deg) rotateY(-10deg) rotateZ(-45deg); box-shadow: -15px -14px 15px -5px rgba(0, 0, 0, 0.15); background: #bcbcbc; }
+.debug-box .magnifying .glass-handle { position: absolute; top: 134px; right: 20px; height: 70px; width: 16px; border-radius: 6px; transform-origin: 50% 0; transform: rotate(-45deg); transform: perspective(70px) rotateX(10deg) rotateY(-10deg) rotateZ(-45deg); box-shadow: -15px -14px 15px -5px rgba(0, 0, 0, 0.15); background: #bcbcbc; }
 
 .debug-box .magnifying { transition: transform 0.6s cubic-bezier(1, 0, 0.6, 1.5) 0s, opacity 0.45s ease-in-out 0.2s; }
 .debug-box .magnifying .glass .clone-bug:after { content: ''; display: inline-block; position: absolute; top: 50%; left: -5%; margin-top: -3px; width: 0%; height: 1px; background-color: #65c32f; transition: width 0.4s cubic-bezier(1, 0, 0.6, 1.5) 0s; transform-origin: 0% 50%; transform: rotate(12deg) translateY(-50%); }

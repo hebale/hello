@@ -34,15 +34,15 @@
 /*
  * emoji path ui style
  */
-.mobile .count-box .count-btn { -webkit-tap-highlight-color: rgba(0, 0, 0, 0); }
+.mobile .count-box .count-btn {  -webkit-tap-highlight-color: rgba(0, 0, 0, 0); }
 .mobile .count-box .emoji { width: 80px; height: 80px; }
-.mobile .count-box .emoji .emoji-bg { width: 160px; height: 160px; border-width: 10px; }
+.mobile .count-box .emoji .emoji-bg { width: 150px; height: 150px; border-width: 10px; }
 
 /*
  * debug ui style
  */
 .mobile .debug-box .magnifying { top: auto; left: auto; right: -100px; bottom: -100px; width: 150px; height: 150px; transform: translate(calc(-100% + 30px), calc(-100% + 30px)); }
-.mobile .debug-box .magnifying .glass { border-width: 10px; }
+.mobile .debug-box .magnifying .glass { width: 140px; height: 140px; border-width: 10px; }
 .mobile .debug-box .magnifying .glass-handle { top: 80px; right: 6px; height: 16px; width: 16px; border: 22px solid #a0a0a0; border-radius: 50%; border-color: rgba(0, 0, 0, 0) #bcbcbc #bcbcbc rgba(0, 0, 0, 0); box-shadow: none; transform: none; background: rgba(0, 0, 0, 0); }
 
 /*
