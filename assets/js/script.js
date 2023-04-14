@@ -72,7 +72,7 @@ const svgEmojiMap = {
 };
 
 /* typing */
-const UiTyping = new Pi.typing('.main-copy', { duration: 1500 }); 
+const UiTyping = new Pi.typing('.main-copy', { duration: 1200 }); 
 
 /* zipper */
 const UiZipper = new Pi.zipper('.zipper-box', {
@@ -111,6 +111,7 @@ const UiZipper = new Pi.zipper('.zipper-box', {
 								document.querySelector('.clock-box').classList.add('active');
 								
 								setTimeout(() => {
+									document.querySelector('.main-copy').style.height = 'auto';
 									document.querySelector('.clock-box').classList.add('start');
 	
 									// check
@@ -466,12 +467,15 @@ const UiScroll = new Pi.scroll('.scroll-box', {
 						document.querySelector('.main-copy').classList.remove('start');
 						document.querySelector('.main-copy').classList.add('end');
 						
-						// thanks
-						var nowC = 0, newC;
-						setInterval(function(){
+						setTimeout(() => {
 							document.querySelector('main').classList.add('finish');
 							o.target.classList.remove('active');
 							uiReset();
+						}, 500);
+
+						// thanks
+						var nowC = 0, newC;
+						setInterval(function(){
 
 							if(nowC > processColorCode.length - 1) nowC = 0;
 							if(nowC === processColorCode.length - 1){
@@ -512,7 +516,6 @@ let classNameList = {
 /*
  * short cut link event 
  */
-// document.querySelector('.refresh').addEventListener('click', () => location.reload());
 
 classNameList.button.forEach(className => {
 	document.querySelector(`.short-cut ${className}`).addEventListener('click', () => {
@@ -521,9 +524,13 @@ classNameList.button.forEach(className => {
 		document.querySelector('.thanks').style.display = 'none';
 
 		classNameList.button
-			.filter(innerClassName => innerClassName !== className)
-			.forEach((innerClassName) => {
+			.filter(innerClassName => {
+				if(innerClassName === className) document.querySelector(`.short-cut ${innerClassName}`).classList.add('active');
+				return innerClassName !== className
+			})
+			.forEach(innerClassName => {
 				document.querySelector(classNameList.section[classNameList.button.indexOf(innerClassName)]).classList.remove('active', 'start');
+				document.querySelector(`.short-cut ${innerClassName}`).classList.remove('active');
 			});
 		
 		uiSection.classList.add('active', 'start');
